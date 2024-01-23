@@ -4,7 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import logo from "../../assets/logo.png"
 import signup from "../../assets/signup.jpg"
 
 import {
@@ -62,7 +61,7 @@ const SignUpForm = () => {
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>We're cooking</h1>
           <br></br>
-          <h3 className={styles.SubHeader}>join today</h3>
+          <h3 className={styles.SubHeader}>join us </h3>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>

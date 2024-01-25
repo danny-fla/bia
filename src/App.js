@@ -9,6 +9,7 @@ import SignInForm from "./pages/auth/SignInForm";
 import RecipeCreateForm from "./pages/recipes/RecipeCreateForm";
 import QuicksnapCreateForm from "./pages/quicksnaps/QuicksnapCreateForm";
 import RecipePage from "./pages/recipes/RecipePage";
+import QuicksnapPage from "./pages/quicksnaps/QuicksnapPage";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/recipes/create" render={() => <RecipeCreateForm />} />
           <Route exact path="/quicksnaps/create" render={() => <QuicksnapCreateForm />} />
           <Route exact path="/recipes/:id" render={() => <RecipePage /> } />
+          <Route exact path="/quicksnaps/:id" render={() => <QuicksnapPage /> } />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

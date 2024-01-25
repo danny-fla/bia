@@ -4,6 +4,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Recipe = (props) => {
   const {
@@ -11,18 +12,53 @@ const Recipe = (props) => {
     owner,
     profile_id,
     profile_image,
-    comments_count,
-    likes_count,
+    recipe_comments_count,
+    recipes_likes_count,
     like_id,
     title,
-    content,
+    ingredients,
+    instructions,
+    duration,
     image,
     updated_at,
     recipePage,
+    setRecipes,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/recipelike/", { recipe: id });
+      setRecipes((prevRecipes) => ({
+        ...prevRecipes,
+        results: prevRecipes.results.map((recipe) => {
+          return recipe.id === id
+            ? { ...recipe, recipes_likes_count: recipe.recipes_likes_count + 1, like_id: data.id }
+            : recipe;
+        }),
+      }));
+    } catch (err) {
+      console.log( "LIKE ERROR:", err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/recipelike/${like_id}/`);
+      setRecipes((prevRecipes) => ({
+        ...prevRecipes,
+        results: prevRecipes.results.map((recipe) => {
+          return recipe.id === id
+            ? { ...recipe, recipes_likes_count: recipe.recipes_likes_count - 1, like_id: null }
+            : recipe;
+        }),
+      }));
+    } catch (err) {
+      console.log('UNLIKE ERROR:', err);
+    }
+  };
 
   return (
     <Card className={styles.Recipe}>
@@ -43,7 +79,9 @@ const Recipe = (props) => {
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {content && <Card.Text>{content}</Card.Text>}
+        {ingredients && <Card.Text><em >Ingredients</em> - {ingredients}</Card.Text>}
+        {instructions && <Card.Text><em>Instructions</em> - {instructions}</Card.Text>}
+        {duration && <Card.Text><em>Duration</em> - {duration}</Card.Text>}
         <div className={styles.RecipeBar}>
           {is_owner ? (
             <OverlayTrigger
@@ -53,11 +91,11 @@ const Recipe = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           ) : like_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleUnlike}>
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            <span onClick={handleLike}>
               <i className={`far fa-heart ${styles.HeartOutline}`} />
             </span>
           ) : (
@@ -68,11 +106,11 @@ const Recipe = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           )}
-          {likes_count}
+          {recipes_likes_count}
           <Link to={`/recipes/${id}`}>
             <i className="far fa-comments" />
           </Link>
-          {comments_count}
+          {recipe_comments_count}
         </div>
       </Card.Body>
     </Card>

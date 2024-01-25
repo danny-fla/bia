@@ -7,6 +7,7 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import RecipeCreateForm from "./pages/recipes/RecipeCreateForm";
+import QuicksnapCreateForm from "./pages/quicksnaps/QuicksnapCreateForm";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/recipes/create" render={() => <RecipeCreateForm />} />
+          <Route exact path="/quicksnaps/create" render={() => <QuicksnapCreateForm />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

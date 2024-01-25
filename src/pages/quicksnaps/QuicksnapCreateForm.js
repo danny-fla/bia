@@ -12,31 +12,30 @@ import Asset from "../../components/Asset";
 
 import Upload from "../../assets/upload.png";
 
-import styles from "../../styles/RecipeCreateEditForm.module.css";
+import styles from "../../styles/QuicksnapCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function RecipeCreateForm() {
+function QuicksnapCreateForm() {
   const [errors, setErrors] = useState({});
 
-  const [recipeData, setRecipeData] = useState({
+  const [quicksnapData, setQuicksnapData] = useState({
     title: "",
-    ingredients: "",
-    instructions: "",
-    duration: "",
+    content: "",
+    city: "",
     image: "",
   });
-  const { title, ingredients, instructions, duration, image } = recipeData;
+  const { title, content, city, image, } = quicksnapData;
 
   const imageInput = useRef(null);
   const history = useHistory();
 
   const handleChange = (event) => {
-    setRecipeData({
-      ...recipeData,
+    setQuicksnapData({
+      ...quicksnapData,
       [event.target.name]: event.target.value,
     });
   };
@@ -44,8 +43,8 @@ function RecipeCreateForm() {
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
-      setRecipeData({
-        ...recipeData,
+      setQuicksnapData({
+        ...quicksnapData,
         image: URL.createObjectURL(event.target.files[0]),
       });
     }
@@ -56,14 +55,14 @@ function RecipeCreateForm() {
     const formData = new FormData();
 
     formData.append("title", title);
-    formData.append("ingredients", ingredients);
-    formData.append("instructions", instructions);
-    formData.append("duration", duration);
+    formData.append("content", content);
+    formData.append("city", city);
+    // formData.append("location", location);
     formData.append("image", imageInput.current.files[0]);
 
     try {
-      const { data } = await axiosReq.post("/recipe/", formData);
-      history.push(`/recipes/${data.id}`);
+      const { data } = await axiosReq.post("/quicksnap/", formData);
+      history.push(`/quicksnaps/${data.id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -90,50 +89,50 @@ function RecipeCreateForm() {
       ))}
 
       <Form.Group>
-        <Form.Label>Ingredients</Form.Label>
+        <Form.Label>Content</Form.Label>
         <Form.Control
           as="textarea"
-          rows={4}
-          name="ingredients"
-          value={ingredients}
+          rows={2}
+          name="content"
+          value={content}
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.ingredients?.map((message, idx) => (
+      {errors?.content?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
       <Form.Group>
-        <Form.Label>Instructions</Form.Label>
+        <Form.Label>City</Form.Label>
         <Form.Control
           as="textarea"
-          rows={4}
-          name="instructions"
-          value={instructions}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      {errors?.instructions?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
-      <Form.Group>
-        <Form.Label>Duration</Form.Label>
-        <Form.Control
-          type="number"
           rows={1}
-          name="duration"
-          value={duration}
+          name="city"
+          value={city}
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.duration?.map((message, idx) => (
+      {errors?.city?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
+      {/* <Form.Group>
+        <Form.Label>Location</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={1}
+          name="location"
+          value={location}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.location?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}  */}
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
@@ -205,4 +204,4 @@ function RecipeCreateForm() {
   );
 }
 
-export default RecipeCreateForm;
+export default QuicksnapCreateForm;

@@ -8,11 +8,11 @@ import Container from "react-bootstrap/Container";
 
 import Upload from "../../assets/upload.png";
 
-import styles from "../../styles/PostCreateEditForm.module.css";
+import styles from "../../styles/RecipeCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-function PostCreateForm() {
+function RecipeCreateForm() {
 
   const [errors, setErrors] = useState({});
 
@@ -63,4 +63,4 @@ function PostCreateForm() {
   );
 }
 
-export default PostCreateForm;
+export default RecipeCreateForm;

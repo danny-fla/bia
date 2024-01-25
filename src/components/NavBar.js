@@ -29,7 +29,17 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/recipes/create"
     >
-      <i className="far fa-plus-square"></i>Add recipe
+      <i className="fa-solid fa-list-check"></i>Add recipe
+    </NavLink>
+  );
+
+  const addQuicksnapIcon = (
+    <NavLink
+      className={styles.NavLink}
+      activeClassName={styles.Active}
+      to="/quicksnaps/create"
+    >
+      <i className="fa-solid fa-camera"></i> QuickSnap
     </NavLink>
   );
 
@@ -86,7 +96,12 @@ const NavBar = () => {
           <img src={logo} alt="logo" height="60" />
         </Navbar.Brand>
         </NavLink>
-        {currentUser && addRecipeIcon}
+        {currentUser && (
+      <>
+        {addRecipeIcon}
+        {addQuicksnapIcon}
+      </>
+    )}
         <Navbar.Toggle
           ref = {ref}
           onClick={() => setExpanded(!expanded)}

@@ -1,7 +1,12 @@
 .App {
   font-family: "Roboto", sans-serif;
   background-color: #f8f8f8;
-  min-height: 100vh;
+  display: flex;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
+  max-width: 1300px;
 }
 
 .Main {

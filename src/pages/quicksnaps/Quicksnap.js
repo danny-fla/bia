@@ -4,6 +4,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Quicksnap = (props) => {
   const {
@@ -11,18 +12,51 @@ const Quicksnap = (props) => {
     owner,
     profile_id,
     profile_image,
-    comments_count,
-    likes_count,
+    quicksnap_comments_count,
+    quicksnap_likes_count,
     like_id,
     title,
     content,
     image,
     updated_at,
     quicksnapPage,
+    setQuicksnaps,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/quicksnaplikes/", { quicksnap: id });
+      setQuicksnaps((prevQuicksnaps) => ({
+        ...prevQuicksnaps,
+        results: prevQuicksnaps.results.map((quicksnap) => {
+          return quicksnap.id === id
+            ? { ...quicksnap, quicksnaps_likes_count: quicksnap.quicksnaps_likes_count + 1, like_id: data.id }
+            : quicksnap;
+        }),
+      }));
+    } catch (err) {
+      console.log( "LIKE ERROR:", err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/quicksnaplikes/${like_id}/`);
+      setQuicksnaps((prevQuicksnaps) => ({
+        ...prevQuicksnaps,
+        results: prevQuicksnaps.results.map((quicksnap) => {
+          return quicksnap.id === id
+            ? { ...quicksnap, quicksnaps_likes_count: quicksnap.quicksnaps_likes_count - 1, like_id: null }
+            : quicksnap;
+        }),
+      }));
+    } catch (err) {
+      console.log('UNLIKE ERROR:', err);
+    }
+  };
 
   return (
     <Card className={styles.Quicksnap}>
@@ -53,11 +87,11 @@ const Quicksnap = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           ) : like_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleUnlike}>
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            <span onClick={handleLike}>
               <i className={`far fa-heart ${styles.HeartOutline}`} />
             </span>
           ) : (
@@ -68,11 +102,11 @@ const Quicksnap = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           )}
-          {likes_count}
+          {quicksnap_likes_count}
           <Link to={`/quicksnaps/${id}`}>
             <i className="far fa-comments" />
           </Link>
-          {comments_count}
+          {quicksnap_comments_count}
         </div>
       </Card.Body>
     </Card>

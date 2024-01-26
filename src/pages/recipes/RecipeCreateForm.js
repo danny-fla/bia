@@ -95,6 +95,7 @@ function RecipeCreateForm() {
           as="textarea"
           rows={4}
           name="ingredients"
+          placeholder="Enter each ingredient on a new line"
           value={ingredients}
           onChange={handleChange}
         />
@@ -110,6 +111,7 @@ function RecipeCreateForm() {
           as="textarea"
           rows={4}
           name="instructions"
+          placeholder="Enter each instruction on a new line"
           value={instructions}
           onChange={handleChange}
         />
@@ -150,7 +152,10 @@ function RecipeCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+      <Col md={5} lg={8} className="d-none d-md-block p-0 p-md-2">
+          <Container className={appStyles.Content}>{textFields}</Container>
+        </Col>
+        <Col className="py-2 p-0 p-md-2" md={7} lg={4}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
@@ -197,9 +202,7 @@ function RecipeCreateForm() {
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
-        </Col>
+       
       </Row>
     </Form>
   );

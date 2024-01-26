@@ -15,6 +15,8 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import NoResults from "../../assets/no-results.png";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 function HomePage({ message, filter = "" }) {
   const [recipes, setRecipes] = useState({ results: [] });
@@ -85,9 +87,16 @@ function HomePage({ message, filter = "" }) {
         {hasLoaded ? (
           <>
             {recipes.results.length ? (
-              recipes.results.map((recipe) => (
-                <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
-              ))
+              <InfiniteScroll 
+                children={recipes.results.map((recipe) => (
+                  <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
+                ))}
+                dataLength={recipes.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!recipes.next}
+                next={() => fetchMoreData(recipes, setRecipes)}
+              />
+          
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
@@ -107,9 +116,15 @@ function HomePage({ message, filter = "" }) {
         {hasLoaded ? (
           <>
             {quicksnaps.results.length ? (
-              quicksnaps.results.map((quicksnap) => (
+              <InfiniteScroll 
+              children={quicksnaps.results.map((quicksnap) => (
                 <Quicksnap key={quicksnap.id} {...quicksnap} setQuicksnaps={setQuicksnaps} />
-              ))
+              ))}
+              dataLength={quicksnaps.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!quicksnaps.next}
+              next={() => fetchMoreData(quicksnaps, setQuicksnaps)}
+            />
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />

@@ -2,9 +2,10 @@ import React from "react";
 import styles from "../../styles/Recipe.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Recipe = (props) => {
   const {
@@ -27,6 +28,20 @@ const Recipe = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/recipes/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/recipes/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleLike = async () => {
     try {
@@ -35,12 +50,16 @@ const Recipe = (props) => {
         ...prevRecipes,
         results: prevRecipes.results.map((recipe) => {
           return recipe.id === id
-            ? { ...recipe, recipes_likes_count: recipe.recipes_likes_count + 1, like_id: data.id }
+            ? {
+                ...recipe,
+                recipes_likes_count: recipe.recipes_likes_count + 1,
+                like_id: data.id,
+              }
             : recipe;
         }),
       }));
     } catch (err) {
-      console.log( "LIKE ERROR:", err);
+      console.log("LIKE ERROR:", err);
     }
   };
 
@@ -51,12 +70,16 @@ const Recipe = (props) => {
         ...prevRecipes,
         results: prevRecipes.results.map((recipe) => {
           return recipe.id === id
-            ? { ...recipe, recipes_likes_count: recipe.recipes_likes_count - 1, like_id: null }
+            ? {
+                ...recipe,
+                recipes_likes_count: recipe.recipes_likes_count - 1,
+                like_id: null,
+              }
             : recipe;
         }),
       }));
     } catch (err) {
-      console.log('UNLIKE ERROR:', err);
+      console.log("UNLIKE ERROR:", err);
     }
   };
 
@@ -65,12 +88,17 @@ const Recipe = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image}  height={55} />
-             <strong>Recipe</strong> from {owner}
+            <Avatar src={profile_image} height={55} />
+            <strong>Recipe</strong> from {owner}
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && recipePage && "..."}
+            {is_owner && recipePage && (
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </Media>
       </Card.Body>
@@ -79,9 +107,21 @@ const Recipe = (props) => {
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {ingredients && <Card.Text><em >Ingredients</em> - {ingredients}</Card.Text>}
-        {instructions && <Card.Text><em>Instructions</em> - {instructions}</Card.Text>}
-        {duration && <Card.Text><em>Duration</em> - {duration}</Card.Text>}
+        {ingredients && (
+          <Card.Text>
+            <em>Ingredients</em> - {ingredients}
+          </Card.Text>
+        )}
+        {instructions && (
+          <Card.Text>
+            <em>Instructions</em> - {instructions}
+          </Card.Text>
+        )}
+        {duration && (
+          <Card.Text>
+            <em>Duration</em> - {duration}
+          </Card.Text>
+        )}
         <div className={styles.RecipeBar}>
           {is_owner ? (
             <OverlayTrigger

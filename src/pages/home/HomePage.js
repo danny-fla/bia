@@ -21,50 +21,71 @@ import { fetchMoreData } from "../../utils/utils";
 function HomePage({ message, filter = "" }) {
   const [recipes, setRecipes] = useState({ results: [] });
   const [quicksnaps, setQuicksnaps] = useState({ results: [] });
+  const [combinedData, setCombinedData] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
-  
+
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    const fetchRecipes = async () => {
+    const fetchData = async () => {
       try {
-        const { data } = await axiosReq.get(`/recipe/?${filter}search=${query}`);
-        setRecipes(data);
-        setHasLoaded(true);
-      } catch (err) {
-        console.log('fetchRecipes error:', err);
+        // Fetch recipes
+        const recipeResponse = await axiosReq.get(
+          `/recipe/?${filter}search=${query}`
+        );
+        setRecipes(recipeResponse.data);
+        console.log("recipeRespone.data.results:", recipeResponse.data.results);
         
-      }
-    };
 
-    setHasLoaded(false);
-    const timer = setTimeout(() => {
-      fetchRecipes();
-    }, 1000)
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [filter, query, pathname]);
+        // Fetch quicksnaps
+        const quicksnapResponse = await axiosReq.get(
+          `/quicksnap/?${filter}search=${query}`
+        );
+        const quicksnapsData = quicksnapResponse.data.results;
+        console.log(
+          "quicksnapResponse.data.results",
+          quicksnapResponse.data.results
+        );
+        
+        // Filter out quicksnaps with duplicate ids in recipes
+        const filteredQuicksnaps = quicksnapsData.filter(
+          (quicksnap) =>
+            !recipeResponse.data.results.some(
+              (recipe) => recipe.id === quicksnap.id
+            )
+        );
+        console.log("filteredQuicksnaps:", filteredQuicksnaps);
+        
+        // Combine recipes with filteredQuicksnaps
+        const combinedData = [
+          ...recipeResponse.data.results,
+          ...filteredQuicksnaps,
+        ];
+        console.log('combinedData', combinedData )
 
-  useEffect(() => {
-    const fetchQuicksnaps = async () => {
-      try {
-        const { data } = await axiosReq.get(`/quicksnap/?${filter}search=${query}`);
-        setQuicksnaps(data);
+        // Set the combined data into state
+        // setQuicksnaps({ results: [...filteredQuicksnaps] });
+        setCombinedData(combinedData);
+        console.log('setCombinedData', setCombinedData )
+        
+
         setHasLoaded(true);
+
+        console.log("Combined Data:", combinedData.data);
       } catch (err) {
-        console.log('fetchQuicksnaps error:', err);
+        console.log("Data fetching error:", err);
       }
     };
 
     setHasLoaded(false);
     const timer = setTimeout(() => {
-      fetchQuicksnaps();
-    }, 1000)
+      fetchData();
+    }, 1000);
+
     return () => {
-      clearTimeout(timer)
-    }
+      clearTimeout(timer);
+    };
   }, [filter, query, pathname]);
 
   return (
@@ -86,17 +107,15 @@ function HomePage({ message, filter = "" }) {
         </Form>
         {hasLoaded ? (
           <>
-            {recipes.results.length ? (
-              <InfiniteScroll 
-                children={recipes.results.map((recipe) => (
-                  <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
-                ))}
-                dataLength={recipes.results.length}
-                loader={<Asset spinner />}
-                hasMore={!!recipes.next}
-                next={() => fetchMoreData(recipes, setRecipes)}
-              />
-          
+            {/* {combinedData.results.length ?  (
+              combinedData.results.map((combinedData) => ( */}
+                {combinedData.length ?  (
+                  combinedData.map((combinedData) => (
+                <React.Fragment key={combinedData.id}>
+                  <Quicksnap {...combinedData} setCombinedData={setCombinedData} />
+                  <Recipe {...combinedData} setCombinedData={setCombinedData} />
+                </React.Fragment>
+              ))
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
@@ -111,31 +130,6 @@ function HomePage({ message, filter = "" }) {
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
         <p>Popular profiles for desktop</p>
-      </Col>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        {hasLoaded ? (
-          <>
-            {quicksnaps.results.length ? (
-              <InfiniteScroll 
-              children={quicksnaps.results.map((quicksnap) => (
-                <Quicksnap key={quicksnap.id} {...quicksnap} setQuicksnaps={setQuicksnaps} />
-              ))}
-              dataLength={quicksnaps.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!quicksnaps.next}
-              next={() => fetchMoreData(quicksnaps, setQuicksnaps)}
-            />
-            ) : (
-              <Container className={appStyles.Content}>
-                <Asset src={NoResults} message={message} />
-              </Container>
-            )}
-          </>
-        ) : (
-          <Container className={appStyles.Content}>
-            <Asset spinner />
-          </Container>
-        )}
       </Col>
     </Row>
   );

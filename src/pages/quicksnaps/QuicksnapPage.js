@@ -9,6 +9,7 @@ import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Quicksnap from "./Quicksnap";
 
+
 function QuicksnapPage() {
   const { id } = useParams();
   const [quicksnap, setQuicksnap] = useState({ results: [] });

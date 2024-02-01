@@ -8,10 +8,14 @@ import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
-import Comment from "../comments/Comment"
+import Comment from "../comments/Comment";
 
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 function RecipePage() {
   const { id } = useParams();
@@ -24,12 +28,12 @@ function RecipePage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: recipe },{ data : comments}] = await Promise.all([
+        const [{ data: recipe }, { data: comments }] = await Promise.all([
           axiosReq.get(`/recipe/${id}`),
           axiosReq.get(`/recipecomments/?recipe=${id}`),
         ]);
         setRecipe({ results: [recipe] });
-        setComments(comments)
+        setComments(comments);
       } catch (err) {
         console.log("this is the error:", err);
       }
@@ -55,14 +59,21 @@ function RecipePage() {
           ) : comments.results.length ? (
             "Comments"
           ) : null}
-           {comments.results.length ? (
-            comments.results.map((comment) => (
-              <Comment 
-                key={comment.id} {...comment}
-                setRecipe={setRecipe}
-                setComments={setComments}
-              />
-            ))
+          {comments.results.length ? (
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setRecipe={setRecipe}
+                  setComments={setComments}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
           ) : currentUser ? (
             <span>No comments. Be the first to comment!</span>
           ) : (

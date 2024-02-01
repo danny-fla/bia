@@ -11,6 +11,7 @@ import RecipePage from "./pages/recipes/RecipePage";
 import RecipesPage from "./pages/recipes/RecipesPage";
 import QuicksnapPage from "./pages/quicksnaps/QuicksnapPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import RecipeEditForm from "./pages/recipes/RecipeEditForm"
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
           <Route exact path="/recipes/create" render={() => <RecipeCreateForm />} />
           <Route exact path="/quicksnaps/create" render={() => <QuicksnapCreateForm />} />
           <Route exact path="/recipes/:id" render={() => <RecipePage /> } />
+          <Route exact path="/recipe/:id/edit" render={() => <RecipeEditForm /> }/>
           <Route exact path="/quicksnaps/:id" render={() => <QuicksnapPage /> } />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>

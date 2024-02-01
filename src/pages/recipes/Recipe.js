@@ -32,12 +32,12 @@ const Recipe = (props) => {
   const history = useHistory();
 
   const handleEdit = () => {
-    history.push(`/recipes/${id}/edit`);
+    history.push(`/recipe/${id}/edit`);
   };
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/recipes/${id}/`);
+      await axiosRes.delete(`/recipe/${id}/`);
       history.goBack();
     } catch (err) {
       console.log(err);

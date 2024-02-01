@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,18 +8,14 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
-import Asset from "../../components/Asset";
-
-import Upload from "../../assets/upload.png";
-
 import styles from "../../styles/RecipeCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function RecipeCreateForm() {
+function RecipeEditForm() {
   const [errors, setErrors] = useState({});
 
   const [recipeData, setRecipeData] = useState({
@@ -33,6 +29,22 @@ function RecipeCreateForm() {
 
   const imageInput = useRef(null);
   const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/recipe/${id}/`);
+        const { title, ingredients, instructions, image, duration, is_owner } = data;
+
+        is_owner ? setRecipeData({ title, ingredients, instructions, image, duration }) : history.push("/");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleMount();
+  }, [history, id]);
 
   const handleChange = (event) => {
     setRecipeData({
@@ -61,9 +73,13 @@ function RecipeCreateForm() {
     formData.append("duration", duration);
     formData.append("image", imageInput.current.files[0]);
 
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
+
     try {
-      const { data } = await axiosReq.post("/recipe/", formData);
-      history.push(`/recipes/${data.id}`);
+      await axiosReq.put(`/recipe/${id}/`, formData);
+      history.push(`/recipes/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -89,7 +105,7 @@ function RecipeCreateForm() {
         </Alert>
       ))}
 
-      <Form.Group>
+<Form.Group>
         <Form.Label>Ingredients</Form.Label>
         <Form.Control
           as="textarea"
@@ -136,7 +152,6 @@ function RecipeCreateForm() {
           {message}
         </Alert>
       ))}
-
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={() => history.goBack()}
@@ -144,7 +159,7 @@ function RecipeCreateForm() {
         cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
+        save
       </Button>
     </div>
   );
@@ -152,40 +167,23 @@ function RecipeCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-       { console.log("RecipeCreateForm")}
-      <Col md={5} lg={8} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
-        </Col>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={4}>
+        {console.log("recipeEditFOrm")}
+        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-              {image ? (
-                <>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
-              ) : (
+              <figure>
+                <Image className={appStyles.Image} src={image} rounded />
+              </figure>
+              <div>
                 <Form.Label
-                  className="d-flex justify-content-center"
+                  className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
                   htmlFor="image-upload"
                 >
-                  <Asset
-                    src={Upload}
-                    message="Click or tap to upload an image"
-                  />
+                  Change the image
                 </Form.Label>
-              )}
+              </div>
 
               <Form.File
                 id="image-upload"
@@ -203,10 +201,12 @@ function RecipeCreateForm() {
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-       
+        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+          <Container className={appStyles.Content}>{textFields}</Container>
+        </Col>
       </Row>
     </Form>
   );
 }
 
-export default RecipeCreateForm;
+export default RecipeEditForm;

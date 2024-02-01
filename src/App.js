@@ -8,7 +8,7 @@ import SignInForm from "./pages/auth/SignInForm";
 import RecipeCreateForm from "./pages/recipes/RecipeCreateForm";
 import QuicksnapCreateForm from "./pages/quicksnaps/QuicksnapCreateForm";
 import RecipePage from "./pages/recipes/RecipePage";
-import HomePage from "./pages/home/HomePage";
+import RecipesPage from "./pages/recipes/RecipesPage";
 import QuicksnapPage from "./pages/quicksnaps/QuicksnapPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 
@@ -19,7 +19,6 @@ function App() {
 
   return (
     <div className={styles.App}>
-      
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
@@ -27,14 +26,14 @@ function App() {
             exact
             path="/"
             render={() => (
-              <HomePage message="No results found. Adjust the search keyword." />
+              <RecipesPage message="No results found. Adjust the search keyword." />
             )}
           />
           <Route
             exact
             path="/feed"
             render={() => (
-              <HomePage
+              <RecipesPage
                 message="No results found. Adjust the search keyword or follow a user."
                 filter={`owner__followed__owner__profile=${profile_id}&`}
               />
@@ -44,7 +43,7 @@ function App() {
             exact
             path="/liked"
             render={() => (
-              <HomePage
+              <RecipesPage
                 message="No results found. Adjust the search keyword or like a recipe."
                 filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
               />

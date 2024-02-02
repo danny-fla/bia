@@ -10,10 +10,12 @@ import QuicksnapCreateForm from "./pages/quicksnaps/QuicksnapCreateForm";
 import RecipePage from "./pages/recipes/RecipePage";
 import RecipesPage from "./pages/recipes/RecipesPage";
 import QuicksnapPage from "./pages/quicksnaps/QuicksnapPage";
-import ProfilePage from "./pages/profiles/ProfilePage"
+import ProfilePage from "./pages/profiles/ProfilePage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
-import RecipeEditForm from "./pages/recipes/RecipeEditForm"
-
+import RecipeEditForm from "./pages/recipes/RecipeEditForm";
+import UsernameForm from "./pages/profiles/UsernameForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -24,7 +26,7 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-        <Route
+          <Route
             exact
             path="/"
             render={() => (
@@ -53,12 +55,43 @@ function App() {
           />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/recipes/create" render={() => <RecipeCreateForm />} />
-          <Route exact path="/quicksnaps/create" render={() => <QuicksnapCreateForm />} />
-          <Route exact path="/recipes/:id" render={() => <RecipePage /> } />
-          <Route exact path="/recipe/:id/edit" render={() => <RecipeEditForm /> }/>
-          <Route exact path="/quicksnaps/:id" render={() => <QuicksnapPage /> } />
+          <Route
+            exact
+            path="/recipes/create"
+            render={() => <RecipeCreateForm />}
+          />
+          <Route
+            exact
+            path="/quicksnaps/create"
+            render={() => <QuicksnapCreateForm />}
+          />
+          <Route exact path="/recipes/:id" render={() => <RecipePage />} />
+          <Route
+            exact
+            path="/recipe/:id/edit"
+            render={() => <RecipeEditForm />}
+          />
+          <Route
+            exact
+            path="/quicksnaps/:id"
+            render={() => <QuicksnapPage />}
+          />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+          <Route
+            exact
+            path="/profiles/:id/edit/username"
+            render={() => <UsernameForm />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit/password"
+            render={() => <UserPasswordForm />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit"
+            render={() => <ProfileEditForm />}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

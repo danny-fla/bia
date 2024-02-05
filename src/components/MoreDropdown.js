@@ -70,6 +70,14 @@ export function ProfileEditDropdown({ id }) {
           <i className="fas fa-key" />
           change password
         </Dropdown.Item>
+        <Dropdown.Item
+          // sends user to the create chef form
+          onClick={() => history.push("/chefs/create")}
+          aria-label="add-chef"
+        >
+          <i className="fas fa-plus-square" />
+          register as chef
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

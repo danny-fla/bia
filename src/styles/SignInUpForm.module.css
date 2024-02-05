@@ -43,6 +43,11 @@
   .Link span {
     color: #ff9254;
   }
+
+  .SmallerLink span {
+    font-size: small;
+    color: #d97137;
+  }
   
   .Container {
     padding: 30px 10px;

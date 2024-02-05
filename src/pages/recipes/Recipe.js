@@ -2,9 +2,11 @@ import React from "react";
 import styles from "../../styles/Recipe.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import btnStyles from "../../styles/Button.module.css";
 import { MoreDropdown } from "../../components/MoreDropdown";
 
 
@@ -25,6 +27,10 @@ const Recipe = (props) => {
     updated_at,
     recipePage,
     setRecipes,
+    reviews_count,
+    average_rating,
+    isProfilePage,
+    showAll,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -153,6 +159,22 @@ const Recipe = (props) => {
           </Link>
           {recipe_comments_count}
         </div>
+      </Card.Body>
+      <Card.Body>
+          <Button
+            className={btnStyles.Button}
+            onClick={() => history.push(`/reviews/${id}/create`)}
+            aria-label="create-review"
+          >
+            Leave a review
+          </Button>
+          <Button
+            className={btnStyles.Button}
+            onClick={() => history.push(`/reviews/${id}`)}
+            aria-label="view-reviews"
+          >
+            Recipe Reviews
+          </Button>
       </Card.Body>
     </Card>
   );

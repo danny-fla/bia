@@ -17,7 +17,7 @@ import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-import Recipe from "../recipes/Recipe";
+import Chef from "../chefs/Chef";
 
 const ReviewsPage = ({ message }) => {
   const [reviews, setReviews] = useState({ results: [] });
@@ -26,46 +26,45 @@ const ReviewsPage = ({ message }) => {
   const currentUser = useCurrentUser();
   const { id } = useParams();
 
-  const [recipeData, setRecipeData] = useState(null);
+  const [chefData, setChefData] = useState(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const { data } = await axiosReq.get(`/reviews/?recipe=${id}`);
+        const { data } = await axiosReq.get(`/reviews/?chef=${id}`);
         setReviews(data);
         setHasLoaded(true);
       } catch (err) {
       }
     };
 
-    const fetchRecipe = async () => {
+    const fetchChef = async () => {
       try {
-        const { data } = await axiosReq.get(`/recipes/${id}`);
-        setRecipeData(data);
+        const { data } = await axiosReq.get(`/chefs/${id}`);
+        setChefData(data);
       } catch (err) {
       }
     };
 
     setHasLoaded(false);
-    fetchRecipe();
+    fetchChef();
     fetchReviews();
   }, [pathname, currentUser, id]);
 
   return (
-    <Row className="h-100 d-flex justify-content-center">
+    <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p className="text-center">Most followed profiles.</p>
-        <PopularProfiles />
+        <PopularProfiles mobile />
 
-        <Recipe {...recipeData} isProfilePage={false} />
+        <Chef {...chefData} isProfilePage={false} />
 
         {hasLoaded ? (
           <>
 
             {reviews.results.length ? (
               <InfiniteScroll
-                children={reviews.results.map((recipe) => (
-                  <Review key={recipe.id} {...recipe} isProfilePage={false} />
+                children={reviews.results.map((chef) => (
+                  <Review key={chef.id} {...chef} isProfilePage={false} />
                 ))}
                 dataLength={reviews.results.length}
                 loader={<Asset spinner />}
@@ -83,6 +82,9 @@ const ReviewsPage = ({ message }) => {
             <Asset spinner />
           </Container>
         )}
+      </Col>
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularProfiles />
       </Col>
     </Row>
   );

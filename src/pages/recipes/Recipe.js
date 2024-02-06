@@ -160,22 +160,6 @@ const Recipe = (props) => {
           {recipe_comments_count}
         </div>
       </Card.Body>
-      <Card.Body>
-          <Button
-            className={`${btnStyles.Button} ${btnStyles.Basil}`}
-            onClick={() => history.push(`/reviews/${id}/create`)}
-            aria-label="create-review"
-          >
-            Leave a review
-          </Button>
-          <Button
-            className={`${btnStyles.Button} ${btnStyles.Basil}`}
-            onClick={() => history.push(`/reviews/${id}`)}
-            aria-label="view-reviews"
-          >
-            Recipe Reviews
-          </Button>
-      </Card.Body>
     </Card>
   );
 };

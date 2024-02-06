@@ -69,7 +69,7 @@ const ChefsPage = ({ message, filter = "" }) => {
 
         {hasLoaded ? (
           <>
-            <h1>Chefs</h1>
+            <h1 className="text-center">Chefs</h1>
             {chefs.results.length ? (
               <InfiniteScroll
                 children={chefs.results.map((chef) => (

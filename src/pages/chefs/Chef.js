@@ -42,8 +42,7 @@ const Chef = (props) => {
           </Media>
         )}
         <p className="text-center">
-        Looking for work:{"    "}
-         <strong>{is_available}</strong> 
+          Looking for work: <strong>{is_available ? "Yes" : "No"}</strong>
         </p>
         <p className="text-center">
           Location: {"    "}
@@ -52,7 +51,6 @@ const Chef = (props) => {
         <p className="text-center">
           Years of Experience: {"    "}
           <strong>{experience}</strong>
-          
         </p>
         <p className="text-center">
           Email: {"    "}

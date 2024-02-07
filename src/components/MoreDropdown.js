@@ -78,6 +78,14 @@ export function ProfileEditDropdown({ id }) {
           <i className="fas fa-plus-square" />
           register as chef
         </Dropdown.Item>
+        <Dropdown.Item
+          // sends user to the create chef form
+          onClick={() => history.push("/chefs/create")}
+          aria-label="delete-profile"
+        >
+          <i className="fa-solid fa-user-minus" />
+          Delete profile
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

@@ -41,7 +41,7 @@ function RecipePage() {
     };
 
     handleMount();
-  }, [id, comments]);
+  }, [id]);
 
   return (
     <Row className="h-100">

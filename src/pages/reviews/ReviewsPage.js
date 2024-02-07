@@ -34,8 +34,11 @@ const ReviewsPage = ({ message }) => {
         const { data } = await axiosReq.get(`/reviews/?chef=${id}`);
         setReviews(data);
         setHasLoaded(true);
+        console.log('data:', data)
       } catch (err) {
+        console.error('Error fetching reviews:', err);
       }
+
     };
 
     const fetchChef = async () => {
@@ -43,6 +46,7 @@ const ReviewsPage = ({ message }) => {
         const { data } = await axiosReq.get(`/chefs/${id}`);
         setChefData(data);
       } catch (err) {
+        console.log('error fetching chefs:', err)
       }
     };
 

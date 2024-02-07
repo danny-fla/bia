@@ -22,6 +22,7 @@ const Chef = (props) => {
     location,
     email,
     phone,
+    reviews_count,
     isProfilePage,
     showAll,
   } = props;
@@ -59,6 +60,12 @@ const Chef = (props) => {
         <p className="text-center">
           Phone: {"    "}
           <strong>{phone}</strong>
+        </p>
+        <p>
+          {console.log('(Chef.js) reviews_count:', reviews_count)}
+          {reviews_count}
+          {" "}
+          reviews
         </p>
         {!is_owner && (
           <Button

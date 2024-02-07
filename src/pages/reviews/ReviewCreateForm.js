@@ -73,6 +73,7 @@ const ReviewCreateForm = () => {
         Cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+        {console.log('Save btn pressed:')}
         Save
       </Button>
     </div>

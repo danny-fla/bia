@@ -34,11 +34,11 @@ const Chef = (props) => {
   return (
     <Card className={styles.Recipe}>
       <Card.Body>
+       <h3>{owner}</h3>
         {!isProfilePage && (
           <Media className="align-items-center justify-content-between">
             <Link to={`/profiles/${profile_id}`}>
               <Avatar src={profile_image} height={100} />
-              <strong>{owner}</strong>
             </Link>
           </Media>
         )}
@@ -58,14 +58,12 @@ const Chef = (props) => {
           <strong>{email}</strong>
         </p>
         <p className="text-center">
-          Phone: {"    "}
+          Phone: 
           <strong>{phone}</strong>
         </p>
-        <p>
-          {console.log('(Chef.js) reviews_count:', reviews_count)}
-          {reviews_count}
-          {" "}
-          reviews
+        <p className="text-center">
+          Reviews: {"    "}
+          <strong>{reviews_count}</strong>
         </p>
         {!is_owner && (
           <Button
@@ -85,6 +83,8 @@ const Chef = (props) => {
             Chef Reviews
           </Button>
         )}
+        <br></br>
+        <br></br>
       </Card.Body>
     </Card>
   );

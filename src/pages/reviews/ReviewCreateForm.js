@@ -17,10 +17,10 @@ const ReviewCreateForm = () => {
   const [errors, setErrors] = useState({});
   const { id } = useParams();
   const [reviewData, setReviewData] = useState({
-    recipeId: id,
+    chefId: id,
     content: "",
   });
-  const { recipeId, content } = reviewData;
+  const { chefId, content } = reviewData;
 
   const history = useHistory();
 
@@ -35,7 +35,7 @@ const ReviewCreateForm = () => {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append("recipe", recipeId);
+    formData.append("chef", chefId);
     formData.append("content", content);
 
     try {

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-
+import RichTextEditor from "react-rte";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -21,7 +21,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function RecipeCreateForm() {
-  useRedirect('loggedOut')
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
   const [recipeData, setRecipeData] = useState({
@@ -74,6 +74,30 @@ function RecipeCreateForm() {
     }
   };
 
+  // Inside the RecipeCreateForm component
+  const [ingredientsValue, setIngredientsValue] = useState(
+    RichTextEditor.createEmptyValue()
+  );
+  const [instructionsValue, setInstructionsValue] = useState(
+    RichTextEditor.createEmptyValue()
+  );
+
+  const handleIngredientsChange = (value) => {
+    setIngredientsValue(value);
+    setRecipeData({
+      ...recipeData,
+      ingredients: value.toString("html"), // Convert RichTextEditor value to HTML string
+    });
+  };
+
+  const handleInstructionsChange = (value) => {
+    setInstructionsValue(value);
+    setRecipeData({
+      ...recipeData,
+      instructions: value.toString("html"), // Convert RichTextEditor value to HTML string
+    });
+  };
+
   const textFields = (
     <div className="text-center">
       <Form.Group>
@@ -93,13 +117,9 @@ function RecipeCreateForm() {
 
       <Form.Group>
         <Form.Label>Ingredients</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={4}
-          name="ingredients"
-          placeholder="Enter each ingredient on a new line"
-          value={ingredients}
-          onChange={handleChange}
+        <RichTextEditor
+          value={ingredientsValue}
+          onChange={handleIngredientsChange}
         />
       </Form.Group>
       {errors?.ingredients?.map((message, idx) => (
@@ -109,13 +129,9 @@ function RecipeCreateForm() {
       ))}
       <Form.Group>
         <Form.Label>Instructions</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={4}
-          name="instructions"
-          placeholder="Enter each instruction on a new line"
-          value={instructions}
-          onChange={handleChange}
+        <RichTextEditor
+          value={instructionsValue}
+          onChange={handleInstructionsChange}
         />
       </Form.Group>
       {errors?.instructions?.map((message, idx) => (
@@ -154,8 +170,8 @@ function RecipeCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-       { console.log("RecipeCreateForm")}
-      <Col md={5} lg={8} className="d-none d-md-block p-0 p-md-2">
+        {console.log("RecipeCreateForm")}
+        <Col md={5} lg={8} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
         <Col className="py-2 p-0 p-md-2" md={7} lg={4}>
@@ -205,7 +221,6 @@ function RecipeCreateForm() {
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-       
       </Row>
     </Form>
   );

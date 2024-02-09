@@ -3,6 +3,7 @@ import Media from "react-bootstrap/Media";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Comment.module.css";
+import { Rating } from "react-simple-star-rating";
 
 const Review = (props) => {
   const {
@@ -11,6 +12,7 @@ const Review = (props) => {
     owner,
     updated_at,
     content,
+    rating,
   } = props;
 
   return (
@@ -24,7 +26,9 @@ const Review = (props) => {
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
           <p>
-            Review:
+            <Rating readonly initialValue={rating} size={20}/* Available Props */ />
+          </p>
+          <p>
             {content}
           </p>
         </Media.Body>

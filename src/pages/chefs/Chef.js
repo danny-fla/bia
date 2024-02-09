@@ -4,7 +4,7 @@ import Media from "react-bootstrap/Media";
 
 import { Link, useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
-// import { Rating } from "react-simple-star-rating";
+import { Rating } from "react-simple-star-rating";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
@@ -22,6 +22,7 @@ const Chef = (props) => {
     location,
     email,
     phone,
+    average_rating,
     reviews_count,
     isProfilePage,
     showAll,
@@ -60,6 +61,11 @@ const Chef = (props) => {
         <p className="text-center">
           Phone: 
           <strong>{phone}</strong>
+        </p>
+        <p className="text-center">
+          Rating:
+          {" "}
+          <Rating readonly initialValue={average_rating} size={25} />
         </p>
         <p className="text-center">
           Reviews: {"    "}

@@ -113,20 +113,20 @@ const Recipe = (props) => {
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {title && <Card.Title className="text-center"><strong>{title}</strong></Card.Title>}
         {ingredients && (
-          <Card.Text>
-            <em>Ingredients</em> - {ingredients}
+          <Card.Text className="text-left">
+            <strong>Ingredients</strong> <div dangerouslySetInnerHTML={{ __html: ingredients }} />
           </Card.Text>
         )}
         {instructions && (
-          <Card.Text>
-            <em>Instructions</em> - {instructions}
+          <Card.Text className="text-left">
+            <strong>Instructions</strong> <div dangerouslySetInnerHTML={{ __html: instructions }} />
           </Card.Text>
         )}
         {duration && (
-          <Card.Text>
-            <em>Duration</em> - {duration}
+          <Card.Text className="text-left">
+            <strong>Duration</strong> <div dangerouslySetInnerHTML={{ __html: duration }} />
           </Card.Text>
         )}
         <div className={styles.RecipeBar}>

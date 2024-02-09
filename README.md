@@ -1,102 +1,184 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Bia
 
-Welcome,
+Bia is a social media platform for cooking enthusiasts and food lovers. Users are able to share their recipes, become registered Chefs while also being albe to follow other users and like/ comment on their uploads.
 
-This is the Code Institute student template for React apps on the Codeanywhere IDE. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.  
-DO NOT use this template if you are using the Gitpod IDE. Use the following command instead:  
-`npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm`
+Click here to view the site (inset link)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **31st August, 2023**
+(am i responsive image)
 
-## Codeanywhere Reminders
+## Strategy Plane
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### Site Aims
 
-To log into the Heroku toolbelt CLI:
+Bia's goal is to create a platform for like-minded users that love food and want to share their thoughts and experiences. Users can showcase their work, offer their opinion and engage with others in an interactive community.
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+<hr>
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### Agile Planning
 
----
+This project was developed utilizing agile methodologies, delivering small features in incremental sprints over three weeks, with a total of three sprints evenly spaced out.
 
-Happy coding!
+Each feature was categorized into epics and prioritized under labels such as "Must have," "Should have," and "Could have." The implementation followed a sequence where "Must have" features were completed first, followed by "Should haves," and finally, "Could haves." This approach ensured that core requirements were addressed initially, with additional features incorporated based on available capacity.
 
-# Getting Started with Create React App
+The Kanban board was established using GitHub Projects, providing a visual representation of the project's progress. It can be accessed here for further details on individual project cards. All stories, excluding documentation tasks, were accompanied by comprehensive acceptance criteria to define the functionality required for their completion.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+(kanpan image)
 
-## Available Scripts
+<hr>
 
-In the project directory, you can run:
+### Epics
 
-### `npm install`
+#### Set Up
 
-Installs the required npm packages.
+This Epic encompasses the initial setup of the React application and its dependencies to facilitate the commencement of feature coding.
 
-### `npm start`
+#### Recipes
 
-Runs the app in the development mode.\
-Open port 3000 to view it in the browser.
+This Epic focuses on the frontend development of the application concerning recipes. It aims to enable users to interact with the backend API through the user interface for creating, reading, updating, and deleting their recipes.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### Comments
 
-### `npm test`
+This Epic concentrates on the frontend development of the application concerning comments on recipes. Its objective is to enable users to interact with the backend API to add comments on recipes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Profiles
 
-### `npm run build`
+This Epic concentrates on the frontend development of the application concerning user profiles. Its aim is to enable users to interact with the backend API through the user interface to manage their profiles.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Chefs
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This Epic centers on the frontend development of the application concerning chefs. It aims to enable users to interact with the backend API to register/unregister themselves as chefs and display their chef information.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Reviews
 
-### `npm run eject`
+This Epic focuses on the frontend development of the application concerning chef reviews. Its goal is to enable users to interact with the backend API through the user interface to leave reviews on specific chef.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<hr>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## User Stories
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Recipes**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- As a logged in user I can create recipes so that I can share my images
+- As a user I can keep scrolling through the images on the site, that are loaded for me automatically so that I don't have to click on "next page"
+- As a recipe owner I can edit my recipe title and description so that I can make corrections or update my recipe after it was created
+- As a logged in user I can view content filtered by users I follow so that I can keep up to date with what they are posting about
+- As a logged in user I can view the recipes I liked so that I can find the recipes I enjoy the most
+- As a user I can view all the most recent recipes, ordered by most recently created first so that I am up to date with the newest content
+- As a logged in user I can like a recipe so that I can show my support for the recipes that interest me
+- As a user, I can search for recipes with keywords, so that I can find the recipes and user profiles I am most interested in.
+- As a user I can view the details of a single recipe so that I can learn more about it
 
-## Learn More
+**Comments**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- As a logged in user I can add comments to a recipe so that I can share my thoughts about the recipe
+- As a user I can see how long ago a comment was made so that I know how old a comment is
+- As a user I can read comments on recipes so that I can read what other users think about the recipes
+- As an owner of a comment I can delete my comment so that I can control removal of my comment from the application
+- As an owner of a comment I can edit my comment so that I can fix or update my existing comment
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Profiles**
 
-### Code Splitting
+- As a user I can view all the recipes by a specific user so that I can catch up on their latest recipes, or decide I want to follow them
+- As a user I can view other users profiles so that I can see their recipes and learn more about them
+- As a user I can create a new account so that I can access all the features for signed up users
+- As a user I can view user's avatars so that I can easily identify users of the application
+- As a user I can tell if I am logged in or not so that I can log in if I need to
+- As a user I can see a list of the most followed profiles so that I can see which profiles are popular
+- As a user I can view statistics about a specific user: bio, number of recipes, follows and users followed so that I can learn more about them
+- As a logged in user I can follow and unfollow other users so that I can see and remove recipes by specific users in my recipes feed
+- As a logged in user I can edit my profile so that I can change my profile picture and bio
+- As a logged in user I can update my username and password so that I can change my display name and keep my profile secure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Setup**
 
-### Analyzing the Bundle Size
+- As a user, I would like a favicon on the website so that I can easily know which tab belongs to Bia
+- As a logged out user I can see sign in and sign up options so that I can sign in / sign up
+- As a user, I would like a fully responsive navigation menu so that I can easily access the site from any device
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Chefs** 
 
-### Making a Progressive Web App
+- As an chef, I would like to be able to register my details so others can view my work and contact details
+- As a user, I would like to be able to rate an chef so that owthers can see my rating and review
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Contact**
 
-### Advanced Configuration
+- As a user, I would like to be able to contact the site owner in case I have any issues or queries.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<hr>
 
-### Deployment
+## The Structure Plane
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Features:
 
-### `npm run build` fails to minify
+**Setup**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+User Story
+
+`As a user, I would like a favicon on the website so that I can easily know which tab belongs to Bia`
+
+Implementation
+
+A site favicon, featuring the site's logo, has been incorporated. This enhancement enables users to readily recognize Bia when navigating multiple open tabs.
+
+(favicon tab screenshot)
+
+User Story
+
+`As a logged out user I can see sign in and sign up options so that I can sign in / sign up`
+
+Implementation
+
+Implemented checks to detect user authentication status (signed in or signed out) and adjust navigation items accordingly. This functionality prevents users from accessing restricted pages by clicking buttons in the UI.
+
+Additionally, URL redirects were implemented to restrict access to pages intended for logged-in users, ensuring unauthorized access is prevented when users are logged out.
+
+User Story
+
+`As a user, I would like a fully responsive navigation menu so that I can easily access the site from any device`
+
+Implementation
+
+A navigation menu was implemented than collapses into a hamburger menu on smaller devices. This will ensure that no navigation items overlap and users can access and navigate the site from any size device.
+
+**Navigation Menu**
+
+User Stories
+
+`As a logged out user I can see sign in and sign up options so that I can sign in / sign up`
+`As a user, I would like a fully responsive navigation menu so that I can easily access the site from any device`
+
+Implementation
+
+A fully responsive navigation menu has been integrated throughout the website, enabling users to navigate effortlessly to various pages regardless of the device they are using. Navigation items dynamically adjust based on the user's logged-in status to restrict access to areas of the application intended exclusively for signed-in users.
+
+Logged in users:
+
+When a user is logged in the following navigation items are shown:
+
+- Add Recipe
+- Home
+- Chefs
+- Feed
+- Liked
+- Contact Us
+- Sign Out
+- Users Profile picture and Username
+
+(navbar screenshot)
+
+Logged out users:
+
+- Home
+- Contact Us
+- Sign In
+- Sign Up
+
+(navbar screenshot)
+
+The navigation icons transition to a green hue when the respective page is active. This feature serves to visually indicate to users their current location within the website.
+
+**Home** 
+
+User Story
+
+``

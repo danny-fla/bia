@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
 import Comment from "../comments/Comment";
@@ -58,7 +59,9 @@ function RecipePage() {
               setComments={setComments}
             />
           ) : comments.results.length ? (
-            "Comments"
+            <span>
+              <Link to="/signin">Sign in</Link> to leave a comment!
+            </span>
           ) : null}
           {comments.results.length ? (
             <InfiniteScroll
@@ -78,7 +81,7 @@ function RecipePage() {
           ) : currentUser ? (
             <span>No comments. Be the first to comment!</span>
           ) : (
-            <span>No comments... yet</span>
+            <span><Link to="/signin">Sign in</Link> to leave a comment!</span>
           )}
         </Container>
       </Col>

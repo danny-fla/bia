@@ -36,16 +36,6 @@ const NavBar = () => {
     </NavLink>
   );
 
-  const addQuicksnapIcon = (
-    <NavLink
-      className={styles.NavLink}
-      activeClassName={styles.Active}
-      to="/quicksnaps/create"
-    >
-      <i className="fa-solid fa-camera"></i> QuickSnap
-    </NavLink>
-  );
-
   const loggedInIcons = (
     <>
        <NavLink
@@ -134,7 +124,6 @@ const NavBar = () => {
           {currentUser && (
             <>
               {addRecipeIcon}
-              {addQuicksnapIcon}
             </>
           )}
           <Navbar.Toggle

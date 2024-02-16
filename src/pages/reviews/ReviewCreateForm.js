@@ -106,7 +106,6 @@ const ReviewCreateForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {console.log('rating:', rating)}
       <Container className={appStyles.Content}>{textFields}</Container>
     </Form>
   );

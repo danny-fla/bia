@@ -19,6 +19,7 @@ import ChefPage from "./pages/chefs/ChefPage";
 import ChefCreateForm from "./pages/chefs/ChefCreateForm";
 import ReviewsPage from "./pages/reviews/ReviewsPage";
 import ReviewCreateForm from "./pages/reviews/ReviewCreateForm";
+import ReviewEditForm from "./pages/reviews/ReviewEditForm"
 
 function App() {
   const currentUser = useCurrentUser();
@@ -109,6 +110,11 @@ function App() {
             exact
             path="/reviews/:id/create/"
             render={() => <ReviewCreateForm />}
+          />
+          <Route
+            exact
+            path="/reviews/:id/edit/"
+            render={() => <ReviewEditForm />}
           />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>

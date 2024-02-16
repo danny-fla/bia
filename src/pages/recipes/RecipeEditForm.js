@@ -77,8 +77,6 @@ function RecipeEditForm() {
     formData.append("title", title);
     formData.append("ingredients", ingredients);
     formData.append("instructions", instructions);
-    formData.append("duration", duration);
-    formData.append("image", imageInput.current.files[0]);
 
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);

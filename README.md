@@ -58,7 +58,7 @@ This Epic focuses on the frontend development of the application concerning chef
 
 **Recipes**
 
-- As a logged in user I can create recipes so that I can share my images
+- As a logged in user I can create recipes so that I can share my ideas
 - As a user I can keep scrolling through the images on the site, that are loaded for me automatically so that I don't have to click on "next page"
 - As a recipe owner I can edit my recipe title and description so that I can make corrections or update my recipe after it was created
 - As a logged in user I can view content filtered by users I follow so that I can keep up to date with what they are posting about
@@ -112,46 +112,46 @@ This Epic focuses on the frontend development of the application concerning chef
 
 **Setup**
 
-User Story
+**User Story:*
 
 `As a user, I would like a favicon on the website so that I can easily know which tab belongs to Bia`
 
-Implementation
+**Implementation:*
 
 A site favicon, featuring the site's logo, has been incorporated. This enhancement enables users to readily recognize Bia when navigating multiple open tabs.
 
 (favicon tab screenshot)
 
-User Story
+**User Story:*
 
 `As a logged out user I can see sign in and sign up options so that I can sign in / sign up`
 
-Implementation
+**Implementation:*
 
 Implemented checks to detect user authentication status (signed in or signed out) and adjust navigation items accordingly. This functionality prevents users from accessing restricted pages by clicking buttons in the UI.
 
 Additionally, URL redirects were implemented to restrict access to pages intended for logged-in users, ensuring unauthorized access is prevented when users are logged out.
 
-User Story
+**User Story:*
 
 `As a user, I would like a fully responsive navigation menu so that I can easily access the site from any device`
 
-Implementation
+**Implementation:*
 
 A navigation menu was implemented than collapses into a hamburger menu on smaller devices. This will ensure that no navigation items overlap and users can access and navigate the site from any size device.
 
 **Navigation Menu**
 
-User Stories
+**User Stories:*
 
 `As a logged out user I can see sign in and sign up options so that I can sign in / sign up`
 `As a user, I would like a fully responsive navigation menu so that I can easily access the site from any device`
 
-Implementation
+**Implementation:*
 
 A fully responsive navigation menu has been integrated throughout the website, enabling users to navigate effortlessly to various pages regardless of the device they are using. Navigation items dynamically adjust based on the user's logged-in status to restrict access to areas of the application intended exclusively for signed-in users.
 
-Logged in users:
+**Logged in users:*
 
 When a user is logged in the following navigation items are shown:
 
@@ -166,7 +166,7 @@ When a user is logged in the following navigation items are shown:
 
 (navbar screenshot)
 
-Logged out users:
+**Logged out users:*
 
 - Home
 - Contact Us
@@ -179,6 +179,355 @@ The navigation icons transition to a green hue when the respective page is activ
 
 **Home** 
 
-User Story
+**User Story:*
 
-``
+`As a user I can view all the most recent recipes, ordered by most recently created first so that I am up to date with the newest content`
+
+**Implementation:*
+
+
+The homepage showcases user recipes with the newest ones appearing at the top, and these recipes are visible to all visitors regardless of whether they are logged in. This enables non-registered users to explore the site's content and decide whether they want to sign up. However, access to features such as creating recipes, liking, and commenting is restricted for users who are not logged in.
+ 
+**Recipes** 
+
+**User Story:*
+
+`As a user I can keep scrolling through the images on the site, that are loaded for me automatically so that I don't have to click on "next page"`
+
+**Implementation:*
+
+To optimize the viewing experience infinite scrolling was introduced, which loads 10 recipes sequentially. As users reach the bottom of the page, an additional set of 10 recipes is automatically loaded, ensuring smooth and efficient browsing with minimal loading times.
+
+**User Story:*
+
+`As a user I can view all the most recent recipes, ordered by most recently created first so that I am up to date with the newest content `
+
+**Implementation:*
+
+The recipes, feed, and liked pages are organized with the newest content displayed first. This arrangement ensures that users won't encounter previously viewed content at the top, reducing the necessity for them to actively search for new recipes.
+
+**User Story:*
+
+`As a user I can view the details of a single recipe so that I can learn more about it`
+
+**Implementation:*
+
+A recipe detail page has been added that is visible to all users, this will allow them to see the full recipe detail and comments.
+
+(insert recipe detail screenshot)
+
+**User Stories:*
+
+`As a logged in user I can like a recipe so that I can show my support for the recipes that interest me`
+
+**Implementation:*
+
+Registered users have complete access to adding recipes, commenting, liking, and unliking content. This measure helps prevent spamming by unregistered users while also encouraging genuine users to register on the site.
+
+(insert comment/liking image)
+
+**User Story:*
+
+`As a recipe owner I can edit my recipe title and description so that I can make corrections or update my recipe after it was created`
+
+**Implementation:*
+
+Only the creator of a recipes will have the ability to edit or delete it. This feature ensures that users maintain complete control over their own recipes and prevents unauthorized users from altering them.
+
+**User Story:*
+
+`As a logged in user I can create recipes so that I can share my ideas`
+
+**Implementation:*
+
+A "add Recipe" button has been placed in the nav bar in order for logged in users to create a recipe when they want to share something.
+
+(add recipe button and add recipe screen)
+
+**User Story:*
+
+`As a logged in user I can view content filtered by users I follow so that I can keep up to date with what they are posting about`
+
+**Implementation:*
+
+Users can navigate to the Feed section, where only recipes from users they follow will be displayed.
+
+(feed section)
+
+**User Story:*
+
+`As a logged in user I can view the recipes I liked so that I can find the recipes I enjoy the most`
+
+**Implementation*
+
+Authenticated users can navigate to their "liked" section to view all the recipes they have liked.
+
+(liked section)
+
+**User Story:*
+
+`As a user, I can search for recipes with keywords, so that I can find the recipes and user profiles I am most interested in.`
+
+**Implementation:*
+
+An added search bar enables users to search for specific keywords, facilitating the exploration of content tailored to their interests.
+
+(search bar image)
+
+**Comments**
+
+Each recipe will feature a comment box accessible to logged-in users, enabling them to contribute comments. 
+
+(Comment section)
+
+Additionally, a comment count will be visible beneath the recipe, indicating the number of comments received.
+
+ The time of the last comment or update will be displayed in either minutes or days ago. Each comment will showcase the username and avatar of the user who posted it.
+
+ (comment section with comments)
+
+ **Profiles**
+
+ **User Story:*
+
+ `As a user I can view other users profiles so that I can see their recipes and learn more about them`
+
+ **Implementation:*
+
+ 
+Profile pages are now available and can be accessed by clicking on a user's avatar displayed on a recipe. Additionally, users can view their own profile by clicking on their icon from the navigation menu.
+
+**User Story:*
+
+`As a logged in user I can edit my profile so that I can change my profile picture and bio`
+
+**Implementation:*
+
+When users own the profile, they can edit it using the profile form accessed through the three-dot dropdown menu on the profile page.
+
+(edit profile page)
+
+**User Story:*
+
+`As a logged in user I can update my username and password so that I can change my display name and keep my profile secure`
+
+**Implementation:*
+
+Users can also edit their username or password by clicking on the corresponding options in the dropdown menu and completing the required forms.
+
+(update password/username)
+
+**User Story:*
+
+`As a user I can tell if I am logged in or not so that I can log in if I need to`
+
+**Implementation:*
+
+When a user is logged in, their profile image is visible in the top right corner of the navigation bar. This feature makes it easy for users to identify when they are logged in and which account they are currently using, especially if they have multiple accounts.
+
+(profile pic on nvabar)
+
+**Most followed profiles**
+
+**User Stories:*
+
+`As a user I can view all the recipes by a specific user so that I can catch up on their latest recipes, or decide I want to follow them`
+
+`As a user I can see a list of the most followed profiles so that I can see which profiles are popular`
+
+`As a user I can view statistics about a specific user: bio, number of recipes, follows and users followed so that I can learn more about them`
+
+`As a logged in user I can follow and unfollow other users so that I can see and remove recipes by specific users in my recipes feed`
+
+**Implementation:*
+
+A component showing the most followed users is shown and the user profiles are able to be viewed by clicking on these. On a desktop, the most followed users has 10 users. On a mobile device this is restricted to 4 so that it does not take up too much room as scrolling may become a nuisance. A follow button will also be displayed that will allow the logged in user to follow the target user.
+
+(folloewd profiles)
+
+**Chefs**
+
+**User Story:*
+
+`As an chef, I would like to be able to register my details so others can view my work and contact details`
+
+**Implementation::*
+
+Users have the option to register as chefs if they wish to showcase their information, including specialty, location, hourly rate, and contact details, to other users. Users can choose to follow registered chefs to stay updated on their work.
+
+To register as a chef, users can access their profile page and click on the three-dot icon to reveal a dropdown menu. From there, they can select "Register as Chef," which will redirect them to a form to fill in their details.
+
+Additionally, users can unregister as chefs by selecting the "Remove being Chef" button on their profile. This button is only visible to profile owners.
+
+(register as chef dropdown)
+
+**Chef Reviews**
+
+**User Story:*
+
+`As a user, I would like to be able to rate an chef so that owthers can see my rating and review`
+
+**Implementation:*
+
+If users are not the owners of a profile, they will find a "Leave a Review" button available, allowing them to leave feedback on that particular chef.
+
+Users can provide textual reviews and rate chefs out of 5 by completing the review form accessible through the "Leave Review" option on the chef's profile.
+
+(review area and rating)
+
+A star rating component has been incorporated, enabling users to easily select the desired number of stars for their rating. The selected stars will illuminate to visually represent the user's rating.
+
+The average rating of the chef is prominently displayed on their profile as a calculated average, derived from the total sum of all ratings divided by the number of ratings submitted
+
+(chef's average rating and review amount)
+
+**Contact**
+
+**User Story:*
+
+`As a user, I would like to be able to contact the site owner in case I have any issues or queries.`
+
+**Implementation:*
+
+A contact form has been included in the navigation menu, enabling users to submit requests for assistance or inquiries.
+
+(contact form)
+
+<hr>
+
+### Future Features
+
+A feature will be implemented that will allow users to option to upload a video of the composition of the recipe and instructions
+
+A feature will be implemented that will allow users the ability to send priviate messages directly to one another.
+
+<hr>
+
+## The Skeleton Plane
+
+<details>
+
+</details>
+
+<summary>All Wireframe Images</summary>
+
+<hr>
+
+## The Surface Plane
+
+### Design
+
+**Colour-Scheme**
+
+The app's background color sets a soft tone with a light shade of #f8f8f8, creating a clean and inviting atmosphere. Each component within the app features a crisp white background (#ffffff), ensuring clarity and highlighting content effectively.
+
+To add a pop of color and enhance user engagement, key elements like logos, active icons, and header texts are highlighted in a lively green tone (#03ac13). This color choice helps draw attention to important areas and prompts interaction.
+
+For easy readability, the main text is presented in a darker shade of #243b24, maintaining a good contrast with the background while remaining pleasant to the eye.
+
+Buttons stand out with their vibrant colors: sign up and sign in buttons use a bright green (#3ded97) to encourage action, while other buttons retain the app's signature green hue (#03ac13), ensuring consistency across the interface.
+
+Overall, this color palette creates a visually appealing and user-friendly environment, making navigation intuitive and interactions seamless.
+
+<hr>
+
+#### Typography
+
+A carefully selected typeface, "Roboto," serves as the cornerstone of the website's typography, providing a modern and versatile aesthetic.
+
+<hr>
+
+#### Imagery
+
+The imagery featured on this website is a blend, comprising both user-uploaded content and legally sourced images obtained from reputable stock image websites such as [unSplash](https://unsplash.com/) and [Pexels](https://www.pexels.com/).
+
+<hr>
+
+## Technologies
+
+- React
+    - Main framework used to create the user interface
+- Node
+    - Package manager used to install dependencies
+- Eslint
+    - Linting tool used in order to check best practice coding standards
+- Diffchecker
+    - Used for file comparisons
+- Heroku
+    - Used for application hosting
+- Git
+    - Version control software
+- Github
+    - Repository used to store base code and docs
+
+<hr>
+
+## Testing
+
+## Deployment
+
+### Heroku Deployment
+
+The deployment process to Heroku involves the following steps:
+
+1. Go to the Heroku website and sign up for an account.
+2. Click on the "New" button located in the top right corner.
+3. Choose "Create New App" from the dropdown menu.
+4. Enter the desired app name and select the region, then click "Create App."
+5. Navigate to the "Resources" tab and search for "Heroku Postgres."
+6. Choose the "Hobby Dev" option and proceed.
+7. Move to the "Deploy" tab.
+8. Scroll down to "Connect to GitHub" and follow the prompts to sign in or authorize.
+9. Search for the repository you wish to deploy and click "Connect."
+10. Scroll further down to "Manual Deploy" and select the main branch.
+11. Finally, click "Deploy" to initiate the deployment process.
+
+
+(deployed link)
+
+<hr>
+
+## Version Control
+
+The website was developed using the Visual Studio Code editor and then pushed to the remote repository named 'bia' on GitHub.
+
+During development, the following Git commands were utilized to manage code changes:
+
+`git add <file>` This command was employed to add specific file(s) to the staging area before committing them.
+`git commit -m "commit message"` Used to commit changes to the local repository, queuing them up for the final step.
+`git push `This command facilitated the pushing of all committed code to the remote repository hosted on GitHub.
+
+<hr>
+
+### Run Locally
+
+To run the project locally, follow these steps:
+
+1. Go to the GitHub Repository you wish to clone for local use.
+2. Click on the "Code" dropdown button.
+3. Select "HTTPS" and copy the repository link.
+4. Open your preferred Integrated Development Environment (IDE) (ensure Git is installed).
+5. In the IDE terminal, type git clone <copied-git-url> and press Enter.
+6. The project will be cloned onto your local machine for use.
+
+Install Dependencies:
+
+`npm install`
+
+Run Application:
+
+`npm start`
+
+<hr>
+
+### Forking
+
+Typically, forks serve two main purposes: proposing changes to another project or using an existing project as a foundation for your own.
+
+To fork a GitHub Repository:
+
+1. Navigate to the repository you wish to fork.
+2. Locate the fork button on the top right of the page, under the header, and click it.
+3. This action will duplicate the entire project in your GitHub Repository.
+
+## Credits

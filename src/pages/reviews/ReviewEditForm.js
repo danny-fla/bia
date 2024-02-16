@@ -14,7 +14,7 @@ const ReviewEditForm = () => {
   
   const [errors, setErrors] = useState({});
   const [reviewData, setReviewData] = useState({
-    chefId: "",
+    chefId: id,
     content: "",
   });
  

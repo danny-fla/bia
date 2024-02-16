@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-
+import RichTextEditor from "react-rte";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -26,6 +26,13 @@ function RecipeEditForm() {
     image: "",
   });
   const { title, ingredients, instructions, duration, image } = recipeData;
+  const [ingredientsValue, setIngredientsValue] = useState(
+    RichTextEditor.createValueFromString(ingredients, "html")
+  );
+  const [instructionsValue, setInstructionsValue] = useState(
+    RichTextEditor.createValueFromString(instructions, "html")
+  );
+  
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -88,6 +95,23 @@ function RecipeEditForm() {
     }
   };
 
+  const handleIngredientsChange = (value) => {
+    setIngredientsValue(value);
+    setRecipeData({
+      ...recipeData,
+      ingredients: value.toString("html"),
+    });
+  };
+  
+  const handleInstructionsChange = (value) => {
+    setInstructionsValue(value);
+    setRecipeData({
+      ...recipeData,
+      instructions: value.toString("html"),
+    });
+  };
+  
+
   const textFields = (
     <div className="text-center">
       <Form.Group>
@@ -106,32 +130,24 @@ function RecipeEditForm() {
       ))}
 
 <Form.Group>
-        <Form.Label>Ingredients</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={4}
-          name="ingredients"
-          placeholder="Enter each ingredient on a new line"
-          value={ingredients}
-          onChange={handleChange}
-        />
-      </Form.Group>
+  <Form.Label>Ingredients</Form.Label>
+  <RichTextEditor
+    value={ingredientsValue}
+    onChange={handleIngredientsChange}
+  />
+</Form.Group>
       {errors?.ingredients?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
       <Form.Group>
-        <Form.Label>Instructions</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={4}
-          name="instructions"
-          placeholder="Enter each instruction on a new line"
-          value={instructions}
-          onChange={handleChange}
-        />
-      </Form.Group>
+  <Form.Label>Instructions</Form.Label>
+  <RichTextEditor
+    value={instructionsValue}
+    onChange={handleInstructionsChange}
+  />
+</Form.Group>
       {errors?.instructions?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}

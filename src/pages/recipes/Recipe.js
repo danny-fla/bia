@@ -18,7 +18,7 @@ const Recipe = (props) => {
     profile_image,
     recipe_comments_count,
     recipes_likes_count,
-    like_id,
+    recipe_like_id,
     title,
     ingredients,
     instructions,
@@ -27,10 +27,6 @@ const Recipe = (props) => {
     updated_at,
     recipePage,
     setRecipes,
-    reviews_count,
-    average_rating,
-    isProfilePage,
-    showAll,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -60,7 +56,7 @@ const Recipe = (props) => {
             ? {
                 ...recipe,
                 recipes_likes_count: recipe.recipes_likes_count + 1,
-                like_id: data.id,
+                recipe_like_id: data.id,
               }
             : recipe;
         }),
@@ -68,11 +64,12 @@ const Recipe = (props) => {
     } catch (err) {
       console.log("LIKE ERROR:", err);
     }
+    console.log("recipe_like_id",recipe_like_id)
   };
 
   const handleUnlike = async () => {
     try {
-      await axiosRes.delete(`/recipelike/${like_id}/`);
+      await axiosRes.delete(`/recipelike/${recipe_like_id}/`);
       setRecipes((prevRecipes) => ({
         ...prevRecipes,
         results: prevRecipes.results.map((recipe) => {
@@ -80,7 +77,7 @@ const Recipe = (props) => {
             ? {
                 ...recipe,
                 recipes_likes_count: recipe.recipes_likes_count - 1,
-                like_id: null,
+                recipe_like_id: null,
               }
             : recipe;
         }),
@@ -88,6 +85,7 @@ const Recipe = (props) => {
     } catch (err) {
       console.log("UNLIKE ERROR:", err);
     }
+    
   };
 
   return (
@@ -137,7 +135,7 @@ const Recipe = (props) => {
             >
               <i className="far fa-heart" />
             </OverlayTrigger>
-          ) : like_id ? (
+          ) : recipe_like_id ? (
             <span onClick={handleUnlike}>
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>

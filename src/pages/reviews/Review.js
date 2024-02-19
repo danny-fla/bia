@@ -42,7 +42,6 @@ const Review = (props) => {
     } catch (err) {}
   };
 
-
   return (
     <>
       <hr />
@@ -62,13 +61,14 @@ const Review = (props) => {
 
           {showEditForm ? (
             <ReviewEditForm
-              id={id}
-              profile_id={profile_id}
-              review={review}
-              rating={rating}
-              profileImage={profile_image}
-              setReviews={setReviews}
-              setShowEditForm={setShowEditForm}
+            id={id}
+            profile_id={profile_id}
+            review={review}
+            rating={rating}
+            profileImage={profile_image}
+            content={content}
+            setReviews={setReviews}
+            setShowEditForm={setShowEditForm}
             />
           ) : (
             <p>

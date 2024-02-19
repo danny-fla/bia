@@ -1,107 +1,79 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import { axiosReq } from "../../api/axiosDefaults";
-import useRedirect from "../../hooks/useRedirect";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
+import { axiosRes } from "../../api/axiosDefaults";
 
-const ReviewEditForm = () => { 
-  const { id } = useParams();
-  
-  const [errors, setErrors] = useState({});
-  const [reviewData, setReviewData] = useState({
-    chefId: id,
-    content: "",
-  });
- 
-  const history = useHistory();
+function ReviewEditForm(props) {
+  const { id, setReviews, setShowEditForm, chefId, content } = props;
+  const [editedReview, setEditedReview] = useState(content); // Initialize with empty string
+  // const [errors, setErrors] = useState([]);
 
-  useEffect(() => {
-    // Fetch existing review data for editing
-    const fetchReviewData = async () => {
-      try {
-        const response = await axiosReq.get(`/reviews/${id}/`);
-        const { chef, content } = response.data;
-        setReviewData({ chefId: chef, content });
-        console.log(chef)
-      } catch (err) {
-        console.error("Error fetching review data:", err);
-      }
-    };
-
-    fetchReviewData(); // Call the function to fetch review data
-  }, [history, id]);
+  // useEffect(() => {
+  //   // Set the initial value of editedReview when the review prop changes
+  //   setEditedReview(review);
+  // }, [review]);
 
   const handleChange = (event) => {
-    setReviewData({
-      ...reviewData,
-      [event.target.name]: event.target.value,
-    });
-    console.log("Review Data: ", reviewData)
+    setEditedReview(event.target.value);
   };
 
-  const chefId = reviewData.chefId;
-  const content = reviewData.content;
-
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   console.log("Submitting edited review:", editedReview);
+  //   try {
+  //     const response = await axiosRes.put(`/reviews/${id}/`, {
+  //       chef: chefId, // Assuming you have access to chefId or another identifier for the chef
+  //       content: editedReview,
+  //     });
+  //     // Update the review in the parent component's state
+  //     console.log("Update response:", response.data);
+  //     setReviews((prevReviews) =>
+  //       prevReviews.map((r) => (r.id === id ? { ...r, content: response.data.content } : r))
+  //     );
+  //     setShowEditForm(false); // Hide the edit form after successful submission
+  //   } catch (error) {
+  //     setErrors(error.response?.data?.detail || ["An error occurred. Please try again."]);
+  //     console.log('ERROR: ', error)
+  //   }
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-
-    formData.append("chef", chefId);
-    formData.append("content", content);
-    console.log(formData)
-
     try {
-      await axiosReq.put(`/reviews/${id}/`, formData);
-      history.goBack();
-      console.log("after submit form data: ", formData)
+      await axiosRes.put(`/reviews/${id}/`, {
+        content: editedReview.trim(),
+      });
+      console.log('CONTENT: ', editedReview)
+      setReviews((prevReviews) => ({
+        ...prevReviews,
+        results: prevReviews.results.map((r) => {
+          return r.id === id
+            ? {
+                ...r,
+                content: editedReview.trim(),
+                updated_at: "now",
+              }
+            : r;
+        }),
+      }));
+      setShowEditForm(false);
     } catch (err) {
-      if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
-        console.log(err.response)
-      }
+      console.log(err);
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Container className={appStyles.Content}>
-        <div className="text-center">
-          <Form.Group>
-            <Form.Label>Content</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={6}
-              name="content"
-              value={reviewData.content}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          {errors?.content?.map((message, idx) => (
-            <Alert variant="warning" key={idx}>
-              {message}
-            </Alert>
-          ))}
-
-          <Button
-            className={`${btnStyles.Button} ${btnStyles.Blue}`}
-            onClick={() => history.goBack()}
-          >
-            Cancel
-          </Button>
-          <Button
-            className={`${btnStyles.Button} ${btnStyles.Blue}`}
-            type="submit"
-          >
-            Save
-          </Button>
-        </div>
-      </Container>
+      <Form.Group>
+        <Form.Control as="textarea" name="review" value={editedReview} onChange={handleChange} />
+      </Form.Group>
+      {/* {errors.map((error, index) => (
+        <Alert key={index} variant="danger">
+          {error}
+        </Alert>
+      ))} */}
+      <Button type="submit">Save Changes</Button>
     </Form>
   );
 };

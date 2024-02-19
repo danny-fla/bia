@@ -22,6 +22,7 @@ const ReviewCreateForm = () => {
     content: "",
   });
   const { chefId, content} = reviewData;
+  console.log(chefId)
 
   const history = useHistory();
 

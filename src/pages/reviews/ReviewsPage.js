@@ -16,6 +16,7 @@ import NoResults from "../../assets/no-results.png";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import ReviewEditForm from "./ReviewEditForm";
 
 import Chef from "../chefs/Chef";
 
@@ -67,8 +68,8 @@ const ReviewsPage = ({ message }) => {
 
             {reviews.results.length ? (
               <InfiniteScroll
-                children={reviews.results.map((chef) => (
-                  <Review key={chef.id} {...chef} isProfilePage={false} />
+                children={reviews.results.map((review) => (
+                  <Review key={review.id} {...review} isProfilePage={false} setReviews={setReviews} />
                 ))}
                 dataLength={reviews.results.length}
                 loader={<Asset spinner />}
@@ -86,6 +87,7 @@ const ReviewsPage = ({ message }) => {
             <Asset spinner />
           </Container>
         )}
+        
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />

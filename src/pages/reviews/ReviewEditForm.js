@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import btnStyles from "../../styles/Button.module.css";
 import Alert from "react-bootstrap/Alert";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -73,7 +74,10 @@ function ReviewEditForm(props) {
           {error}
         </Alert>
       ))} */}
-      <Button type="submit">Save Changes</Button>
+      <Button 
+        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        type="submit">Save Changes
+      </Button>
     </Form>
   );
 };

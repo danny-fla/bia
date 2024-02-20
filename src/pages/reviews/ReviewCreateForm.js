@@ -61,19 +61,6 @@ const ReviewCreateForm = () => {
   const textFields = (
     <div className="text-center">
       <Form.Group>
-        <Form.Label>Rating</Form.Label>
-        <Form.Control
-          name="rating"
-          value={rating}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      {errors?.title?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
-      <Form.Group>
         <Rating onClick={handleRating} /* Available Props */ />
       </Form.Group>
       <Form.Group>

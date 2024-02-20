@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Review from "./Review";
 import Asset from "../../components/Asset";
@@ -16,7 +19,7 @@ import NoResults from "../../assets/no-results.png";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import ReviewEditForm from "./ReviewEditForm";
+
 
 import Chef from "../chefs/Chef";
 
@@ -35,9 +38,7 @@ const ReviewsPage = ({ message }) => {
         const { data } = await axiosReq.get(`/reviews/?chef=${id}`);
         setReviews(data);
         setHasLoaded(true);
-        console.log('data:', data)
       } catch (err) {
-        console.error('Error fetching reviews:', err);
       }
 
     };
@@ -47,7 +48,6 @@ const ReviewsPage = ({ message }) => {
         const { data } = await axiosReq.get(`/chefs/${id}`);
         setChefData(data);
       } catch (err) {
-        console.log('error fetching chefs:', err)
       }
     };
 

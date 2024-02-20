@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-
+import React from "react";
+import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -22,7 +23,6 @@ const ReviewCreateForm = () => {
     content: "",
   });
   const { chefId, content} = reviewData;
-  console.log(chefId)
 
   const history = useHistory();
 
@@ -86,7 +86,6 @@ const ReviewCreateForm = () => {
         Cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        {console.log('Save btn pressed:')}
         Save
       </Button>
     </div>

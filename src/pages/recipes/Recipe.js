@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "../../styles/Recipe.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import {Card}  from "react-bootstrap";
+import {Media} from "react-bootstrap";
+import {OverlayTrigger} from "react-bootstrap";
+import {Tooltip} from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
-import btnStyles from "../../styles/Button.module.css";
 import { MoreDropdown } from "../../components/MoreDropdown";
 
 
@@ -42,7 +43,6 @@ const Recipe = (props) => {
       await axiosRes.delete(`/recipe/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
     }
   };
 
@@ -62,9 +62,7 @@ const Recipe = (props) => {
         }),
       }));
     } catch (err) {
-      console.log("LIKE ERROR:", err);
     }
-    console.log("recipe_like_id",recipe_like_id)
   };
 
   const handleUnlike = async () => {
@@ -83,7 +81,6 @@ const Recipe = (props) => {
         }),
       }));
     } catch (err) {
-      console.log("UNLIKE ERROR:", err);
     }
     
   };

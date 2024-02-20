@@ -1,4 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useRef } from "react";
 import RichTextEditor from "react-rte";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -46,7 +49,6 @@ function RecipeEditForm() {
 
         is_owner ? setRecipeData({ title, ingredients, instructions, image, duration }) : history.push("/");
       } catch (err) {
-        console.log(err);
       }
     };
 
@@ -86,7 +88,6 @@ function RecipeEditForm() {
       await axiosReq.put(`/recipe/${id}/`, formData);
       history.push(`/recipes/${id}`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -181,7 +182,6 @@ function RecipeEditForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        {console.log("recipeEditFOrm")}
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}

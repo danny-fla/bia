@@ -1,7 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { createContext } from "react";
+import { useContext } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { axiosReq } from "../api/axiosDefaults";
+import { axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { followHelper, unfollowHelper } from "../utils/utils";
+import { followHelper } from "../utils/utils";
+import { unfollowHelper } from "../utils/utils";
 
 const ProfileDataContext = createContext();
 const SetProfileDataContext = createContext();
@@ -39,7 +44,6 @@ export const ProfileDataProvider = ({ children }) => {
         },
       }));
     } catch (err) {
-      console.log(err);
     }
   };
 
@@ -61,7 +65,6 @@ export const ProfileDataProvider = ({ children }) => {
         },
       }));
     } catch (err) {
-      console.log(err);
     }
   };
 
@@ -76,7 +79,6 @@ export const ProfileDataProvider = ({ children }) => {
           popularProfiles: data,
         }));
       } catch (err) {
-        console.log(err);
       }
     };
 

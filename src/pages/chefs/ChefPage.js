@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -33,9 +34,7 @@ const ChefsPage = ({ message, filter = "" }) => {
         const { data } = await axiosReq.get(`/chefs/?${filter}search=${query}`);
         setChefs(data);
         setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err){}
     };
 
     setHasLoaded(false);

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -32,7 +33,6 @@ function RecipesPage({ message, filter = "" }) {
         setRecipes(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
       }
     };
 

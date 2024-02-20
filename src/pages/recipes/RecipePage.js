@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -37,7 +38,6 @@ function RecipePage() {
         setRecipe({ results: [recipe] });
         setComments(comments);
       } catch (err) {
-        console.log("this is the error:", err);
       }
     };
 

@@ -54,7 +54,6 @@ function ProfilePage() {
         setProfileRecipes(profileRecipes);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
       }
     };
     fetchData();

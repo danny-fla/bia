@@ -1,5 +1,6 @@
 // react imports
-import React, {useState} from "react";
+import React from "react";
+import { useState } from "react";
 // bootstrap imports
 import Media from "react-bootstrap/Media";
 import { Link } from "react-router-dom";

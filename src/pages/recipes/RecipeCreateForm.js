@@ -1,4 +1,6 @@
-import React, { useRef, useState } from "react";
+import React from "react";
+import { useRef } from "react";
+import { useState } from "react";
 import RichTextEditor from "react-rte";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -67,7 +69,6 @@ function RecipeCreateForm() {
       const { data } = await axiosReq.post("/recipe/", formData);
       history.push(`/recipes/${data.id}`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -170,7 +171,6 @@ function RecipeCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        {console.log("RecipeCreateForm")}
         <Col md={5} lg={8} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>

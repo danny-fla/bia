@@ -1,5 +1,9 @@
-import React, {useState} from "react";
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import React from "react";
+import { useState } from "react";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Nav from "react-bootstrap/Nav";
 import logo from "../assets/bia-logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -26,7 +30,6 @@ const NavBar = () => {
       setToggleNavBar(!toggleNavBar);
       removeTokenTimestamp()
     } catch (err) {
-      console.log(err);
     }
   };
 
@@ -139,7 +142,7 @@ const NavBar = () => {
   return (
     <>
       <Navbar
-        expanded={toggleNavBar}
+        expanded={toggleNavBar || expanded}
         className={`${styles.NavBar} `}
         expand="md"
         fixed="top"
@@ -158,7 +161,10 @@ const NavBar = () => {
           )}
           <Navbar.Toggle
             ref={ref}
-            onClick={() => setToggleNavBar(!toggleNavBar)}
+            onClick={() => {
+              setToggleNavBar(!toggleNavBar);
+              setExpanded(!expanded);
+            }}
             aria-controls="basic-navbar-nav"
           />
           <Navbar.Collapse id="basic-navbar-nav">

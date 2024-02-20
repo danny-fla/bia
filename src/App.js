@@ -20,6 +20,7 @@ import ChefCreateForm from "./pages/chefs/ChefCreateForm";
 import ReviewsPage from "./pages/reviews/ReviewsPage";
 import ReviewCreateForm from "./pages/reviews/ReviewCreateForm";
 import ReviewEditForm from "./pages/reviews/ReviewEditForm"
+import NotFound from "./components/NotFound"
 
 function App() {
   const currentUser = useCurrentUser();
@@ -116,7 +117,7 @@ function App() {
             path="/reviews/:id/edit/"
             render={() => <ReviewEditForm />}
           />
-          <Route render={() => <p>Page not found!</p>} />
+          <Route render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>

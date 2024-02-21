@@ -66,7 +66,7 @@ function SignInForm() {
       </Col>
       <Col className="my-auto p-0 p-md-2" md={8}>
         <Container className={`${appStyles.Content} p-4 `}>
-        <h1 className={styles.Header}>Welcome back</h1>
+        <h1 className={styles.Header}>Welcome</h1>
           <br></br>
           <h3 className={styles.SubHeader}>sign in</h3>
           <Form onSubmit={handleSubmit}>

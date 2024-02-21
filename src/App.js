@@ -54,7 +54,7 @@ function App() {
             render={() => (
               <RecipesPage
                 message="No results found. Adjust the search keyword or like a recipe."
-                filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+                filter={`RecipeLikes__owner__profile=${profile_id}&ordering=-RecipeLikes__created_at&`}
               />
             )}
           />
@@ -117,7 +117,9 @@ function App() {
             path="/reviews/:id/edit/"
             render={() => <ReviewEditForm />}
           />
-          <Route render={() => <NotFound />} />
+          <Route
+            message="No results found"
+            render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>

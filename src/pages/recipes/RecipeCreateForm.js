@@ -21,6 +21,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
+import { FormGroup } from "react-bootstrap";
 
 function RecipeCreateForm() {
   useRedirect("loggedOut");
@@ -30,10 +31,11 @@ function RecipeCreateForm() {
     title: "",
     ingredients: "",
     instructions: "",
+    category: "",
     duration: "",
     image: "",
   });
-  const { title, ingredients, instructions, duration, image } = recipeData;
+  const { title, ingredients, instructions, category, duration, image } = recipeData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -62,6 +64,7 @@ function RecipeCreateForm() {
     formData.append("title", title);
     formData.append("ingredients", ingredients);
     formData.append("instructions", instructions);
+    formData.append("category", category);
     formData.append("duration", duration);
     formData.append("image", imageInput.current.files[0]);
 
@@ -136,6 +139,25 @@ function RecipeCreateForm() {
         />
       </Form.Group>
       {errors?.instructions?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+     <Form.Group controlId="category">
+        <Form.Label>Category</Form.Label>
+        <Form.Control
+          as="select"
+          name="category"
+          value={category}
+          onChange={handleChange}
+        >
+          <option>Breakfast</option>
+          <option>Snack</option>
+          <option>Lunch</option>
+          <option>Dinner</option>
+        </Form.Control>
+      </Form.Group>
+      {errors?.category?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>

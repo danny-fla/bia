@@ -25,10 +25,11 @@ function RecipeEditForm() {
     title: "",
     ingredients: "",
     instructions: "",
+    category: "",
     duration: "",
     image: "",
   });
-  const { title, ingredients, instructions, duration, image } = recipeData;
+  const { title, ingredients, instructions, category, duration, image } = recipeData;
   const [ingredientsValue, setIngredientsValue] = useState(
     RichTextEditor.createValueFromString(ingredients, "html")
   );
@@ -45,9 +46,9 @@ function RecipeEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/recipe/${id}/`);
-        const { title, ingredients, instructions, image, duration, is_owner } = data;
+        const { title, ingredients, instructions, image, category, duration, is_owner } = data;
 
-        is_owner ? setRecipeData({ title, ingredients, instructions, image, duration }) : history.push("/");
+        is_owner ? setRecipeData({ title, ingredients, instructions, image, category, duration }) : history.push("/");
       } catch (err) {
       }
     };
@@ -79,6 +80,7 @@ function RecipeEditForm() {
     formData.append("title", title);
     formData.append("ingredients", ingredients);
     formData.append("instructions", instructions);
+    formData.append("category", category)
 
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
@@ -148,6 +150,25 @@ function RecipeEditForm() {
   />
 </Form.Group>
       {errors?.instructions?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group controlId="category">
+        <Form.Label>Category</Form.Label>
+        <Form.Control
+          as="select"
+          name="category"
+          value={category}
+          onChange={handleChange}
+        >
+          <option>Breakfast</option>
+          <option>Snack</option>
+          <option>Lunch</option>
+          <option>Dinner</option>
+        </Form.Control>
+      </Form.Group>
+      {errors?.category?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>

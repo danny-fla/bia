@@ -26,11 +26,12 @@ function RecipesPage({ message, filter = "" }) {
   const { pathname } = useLocation();
   const currentUser = useCurrentUser();
   const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const { data } = await axiosReq.get(`/recipe/?${filter}search=${query}`);
+        const { data } = await axiosReq.get(`/recipe/?${filter}search=${query}&category=${category}`);
         setRecipes(data);
         setHasLoaded(true);
       } catch (err) {
@@ -44,7 +45,7 @@ function RecipesPage({ message, filter = "" }) {
     return () => {
         clearTimeout(timer)
     }
-  }, [filter, query, pathname, currentUser]);
+  }, [filter, query, pathname, category, currentUser]);
 
   return (
     <Row className="h-100">
@@ -56,12 +57,30 @@ function RecipesPage({ message, filter = "" }) {
           onSubmit={(event) => event.preventDefault()}
         >
           <Form.Control
+            size="sm"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             type="text"
             className="mr-sm-2"
             placeholder="Search bia"
           />
+           <Form.Control
+                size="sm"
+                as="select"
+                placeholder="Choose..."
+                value={category}
+                onChange={(event) => setCategory(event.target.value)}
+              >
+                <option key="blankChoice" hidden value>
+                  {" "}
+                  Category{" "}
+                </option>
+                <option>Breakfast</option>
+                <option>Snack</option>
+                <option>Lunch</option>
+                <option>Dinner</option>
+              </Form.Control>
+              <br></br>
         </Form>
         {hasLoaded ? (
           <>

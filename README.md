@@ -4,7 +4,7 @@ Bia is a social media platform for cooking enthusiasts and food lovers. Users ar
 
 Click here to view the site (inset link)
 
-(am i responsive image)
+![Am-I-Responsive](./readme/images/responsive.png)
 
 ## Strategy Plane
 

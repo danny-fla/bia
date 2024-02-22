@@ -93,13 +93,13 @@ export function ProfileEditDropdown({ id }) {
           <i className="fas fa-plus-square" />
           register as chef
         </Dropdown.Item>
-        <Dropdown.Item
+        {/* <Dropdown.Item
           onClick={handleDeleteProfile}
           aria-label="delete-profile"
         >
           <i className="fa-solid fa-user-minus" />
           Delete profile
-        </Dropdown.Item>
+        </Dropdown.Item> */}
       </Dropdown.Menu>
     </Dropdown>
   );

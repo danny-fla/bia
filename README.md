@@ -22,7 +22,7 @@ Each feature was categorized into epics and prioritized under labels such as "Mu
 
 The Kanban board was established using GitHub Projects, providing a visual representation of the project's progress. It can be accessed here for further details on individual project cards. All stories, excluding documentation tasks, were accompanied by comprehensive acceptance criteria to define the functionality required for their completion.
 
-(kanpan image)
+![Users Stories Chart](./readme/images/user-stories-chart.png)
 
 <hr>
 
@@ -112,46 +112,45 @@ This Epic focuses on the frontend development of the application concerning chef
 
 **Setup**
 
-**User Story:*
+*User Story:*
 
 `As a user, I would like a favicon on the website so that I can easily know which tab belongs to Bia`
 
-**Implementation:*
+*Implementation:
 
 A site favicon, featuring the site's logo, has been incorporated. This enhancement enables users to readily recognize Bia when navigating multiple open tabs.
 
-(favicon tab screenshot)
+![Site Favicon](./readme/images/readme-favicon.png)
 
-**User Story:*
+*User Story:*
 
 `As a logged out user I can see sign in and sign up options so that I can sign in / sign up`
 
-**Implementation:*
+*Implementation:*
 
 Implemented checks to detect user authentication status (signed in or signed out) and adjust navigation items accordingly. This functionality prevents users from accessing restricted pages by clicking buttons in the UI.
 
 Additionally, URL redirects were implemented to restrict access to pages intended for logged-in users, ensuring unauthorized access is prevented when users are logged out.
 
-**User Story:*
+*User Story:*
 
 `As a user, I would like a fully responsive navigation menu so that I can easily access the site from any device`
-
-**Implementation:*
+*Implementation:*
 
 A navigation menu was implemented than collapses into a hamburger menu on smaller devices. This will ensure that no navigation items overlap and users can access and navigate the site from any size device.
 
 **Navigation Menu**
 
-**User Stories:*
+*User Stories:*
 
 `As a logged out user I can see sign in and sign up options so that I can sign in / sign up`
 `As a user, I would like a fully responsive navigation menu so that I can easily access the site from any device`
 
-**Implementation:*
+*Implementation:*
 
 A fully responsive navigation menu has been integrated throughout the website, enabling users to navigate effortlessly to various pages regardless of the device they are using. Navigation items dynamically adjust based on the user's logged-in status to restrict access to areas of the application intended exclusively for signed-in users.
 
-**Logged in users:*
+*Logged in users:*
 
 When a user is logged in the following navigation items are shown:
 
@@ -164,172 +163,168 @@ When a user is logged in the following navigation items are shown:
 - Sign Out
 - Users Profile picture and Username
 
-(navbar screenshot)
+![NavBar Logged In](./readme/images/readme-logged-in.png)
 
-**Logged out users:*
+*Logged out users:*
 
 - Home
 - Contact Us
 - Sign In
 - Sign Up
 
-(navbar screenshot)
+![NavBar Logged Out](./readme/images/readme-logged-out.png)
 
 The navigation icons transition to a green hue when the respective page is active. This feature serves to visually indicate to users their current location within the website.
 
 **Home** 
 
-**User Story:*
+*User Story:*
 
 `As a user I can view all the most recent recipes, ordered by most recently created first so that I am up to date with the newest content`
 
-**Implementation:*
+*Implementation:*
 
 
 The homepage showcases user recipes with the newest ones appearing at the top, and these recipes are visible to all visitors regardless of whether they are logged in. This enables non-registered users to explore the site's content and decide whether they want to sign up. However, access to features such as creating recipes, liking, and commenting is restricted for users who are not logged in.
  
 **Recipes** 
 
-**User Story:*
+*User Story:*
 
 `As a user I can keep scrolling through the images on the site, that are loaded for me automatically so that I don't have to click on "next page"`
 
-**Implementation:*
+*Implementation:*
 
 To optimize the viewing experience infinite scrolling was introduced, which loads 10 recipes sequentially. As users reach the bottom of the page, an additional set of 10 recipes is automatically loaded, ensuring smooth and efficient browsing with minimal loading times.
 
-**User Story:*
+*User Story:*
 
 `As a user I can view all the most recent recipes, ordered by most recently created first so that I am up to date with the newest content `
 
-**Implementation:*
+*Implementation:*
 
 The recipes, feed, and liked pages are organized with the newest content displayed first. This arrangement ensures that users won't encounter previously viewed content at the top, reducing the necessity for them to actively search for new recipes.
 
-**User Story:*
+*User Story:*
 
 `As a user I can view the details of a single recipe so that I can learn more about it`
 
-**Implementation:*
+*Implementation:*
 
 A recipe detail page has been added that is visible to all users, this will allow them to see the full recipe detail and comments.
-
-(insert recipe detail screenshot)
 
 **User Stories:*
 
 `As a logged in user I can like a recipe so that I can show my support for the recipes that interest me`
 
-**Implementation:*
+*Implementation:*
 
 Registered users have complete access to adding recipes, commenting, liking, and unliking content. This measure helps prevent spamming by unregistered users while also encouraging genuine users to register on the site.
 
-(insert comment/liking image)
+![Likes](./readme/images/readme-like.png)
 
-**User Story:*
+*User Story:*
 
 `As a recipe owner I can edit my recipe title and description so that I can make corrections or update my recipe after it was created`
 
-**Implementation:*
+*Implementation:*
 
 Only the creator of a recipes will have the ability to edit or delete it. This feature ensures that users maintain complete control over their own recipes and prevents unauthorized users from altering them.
 
-**User Story:*
+*User Story:*
 
 `As a logged in user I can create recipes so that I can share my ideas`
 
-**Implementation:*
+*Implementation:*
 
 A "add Recipe" button has been placed in the nav bar in order for logged in users to create a recipe when they want to share something.
 
-(add recipe button and add recipe screen)
+![Add-Recipe](./readme/images/readme-add-recipe.png)
 
-**User Story:*
+*User Story:*
 
 `As a logged in user I can view content filtered by users I follow so that I can keep up to date with what they are posting about`
 
-**Implementation:*
+*Implementation:*
 
 Users can navigate to the Feed section, where only recipes from users they follow will be displayed.
 
-(feed section)
+![Feed](./readme/images/readme-feed.png)
 
-**User Story:*
+*User Story:*
 
 `As a logged in user I can view the recipes I liked so that I can find the recipes I enjoy the most`
 
-**Implementation*
+*Implementation*
 
 Authenticated users can navigate to their "liked" section to view all the recipes they have liked.
 
-(liked section)
+![Liked](./readme/images/readme-liked.png)
 
-**User Story:*
+*User Story:*
 
 `As a user, I can search for recipes with keywords, so that I can find the recipes and user profiles I am most interested in.`
 
-**Implementation:*
+*Implementation:*
 
 An added search bar enables users to search for specific keywords, facilitating the exploration of content tailored to their interests.
 
-(search bar image)
+![Search-Bar](./readme/images/readme-searchbar.png)
 
 **Comments**
 
 Each recipe will feature a comment box accessible to logged-in users, enabling them to contribute comments. 
 
-(Comment section)
 
 Additionally, a comment count will be visible beneath the recipe, indicating the number of comments received.
 
- The time of the last comment or update will be displayed in either minutes or days ago. Each comment will showcase the username and avatar of the user who posted it.
+The time of the last comment or update will be displayed in either minutes or days ago. Each comment will showcase the username and avatar of the user who posted it.
 
- (comment section with comments)
+![Comments](./readme/images/readme-comments.png)
 
- **Profiles**
+**Profiles**
 
- **User Story:*
+*User Story:*
 
- `As a user I can view other users profiles so that I can see their recipes and learn more about them`
+`As a user I can view other users profiles so that I can see their recipes and learn more about them`
 
- **Implementation:*
+*Implementation:*
 
- 
 Profile pages are now available and can be accessed by clicking on a user's avatar displayed on a recipe. Additionally, users can view their own profile by clicking on their icon from the navigation menu.
 
-**User Story:*
+*User Story:*
 
 `As a logged in user I can edit my profile so that I can change my profile picture and bio`
 
-**Implementation:*
+*Implementation:*
 
 When users own the profile, they can edit it using the profile form accessed through the three-dot dropdown menu on the profile page.
 
-(edit profile page)
+![Edit Profile](./readme/images/readme-edit-profile.png)
 
-**User Story:*
+*User Story:*
 
 `As a logged in user I can update my username and password so that I can change my display name and keep my profile secure`
 
-**Implementation:*
+*Implementation:*
 
 Users can also edit their username or password by clicking on the corresponding options in the dropdown menu and completing the required forms.
 
-(update password/username)
+![DropDown-Menu](./readme/images/readme-dropdown-menu.png)
 
-**User Story:*
+*User Story:*
 
 `As a user I can tell if I am logged in or not so that I can log in if I need to`
 
-**Implementation:*
+*Implementation:*
 
 When a user is logged in, their profile image is visible in the top right corner of the navigation bar. This feature makes it easy for users to identify when they are logged in and which account they are currently using, especially if they have multiple accounts.
 
-(profile pic on nvabar)
+![Profile-Pic-NavBar](./readme/images/readme-logged-in.png)
 
 **Most followed profiles**
 
-**User Stories:*
+*User Stories:*
 
 `As a user I can view all the recipes by a specific user so that I can catch up on their latest recipes, or decide I want to follow them`
 
@@ -339,59 +334,56 @@ When a user is logged in, their profile image is visible in the top right corner
 
 `As a logged in user I can follow and unfollow other users so that I can see and remove recipes by specific users in my recipes feed`
 
-**Implementation:*
+*Implementation:*
 
 A component showing the most followed users is shown and the user profiles are able to be viewed by clicking on these. On a desktop, the most followed users has 10 users. On a mobile device this is restricted to 4 so that it does not take up too much room as scrolling may become a nuisance. A follow button will also be displayed that will allow the logged in user to follow the target user.
 
-(folloewd profiles)
+![Other-Profiles](./readme/images/readme-followed-profiles.png)
 
 **Chefs**
 
-**User Story:*
+*User Story:*
 
 `As an chef, I would like to be able to register my details so others can view my work and contact details`
 
-**Implementation::*
+*Implementation::*
 
 Users have the option to register as chefs if they wish to showcase their information, including specialty, location, hourly rate, and contact details, to other users. Users can choose to follow registered chefs to stay updated on their work.
 
 To register as a chef, users can access their profile page and click on the three-dot icon to reveal a dropdown menu. From there, they can select "Register as Chef," which will redirect them to a form to fill in their details.
 
-Additionally, users can unregister as chefs by selecting the "Remove being Chef" button on their profile. This button is only visible to profile owners.
-
-(register as chef dropdown)
+![Chef-Dropdown](./readme/images/readme-chefs.png)
 
 **Chef Reviews**
 
-**User Story:*
+*User Story:*
 
 `As a user, I would like to be able to rate an chef so that owthers can see my rating and review`
 
-**Implementation:*
+*Implementation:*
 
 If users are not the owners of a profile, they will find a "Leave a Review" button available, allowing them to leave feedback on that particular chef.
 
 Users can provide textual reviews and rate chefs out of 5 by completing the review form accessible through the "Leave Review" option on the chef's profile.
 
-(review area and rating)
+![Chef-Review](./readme/images/readme-review.png)
 
 A star rating component has been incorporated, enabling users to easily select the desired number of stars for their rating. The selected stars will illuminate to visually represent the user's rating.
 
 The average rating of the chef is prominently displayed on their profile as a calculated average, derived from the total sum of all ratings divided by the number of ratings submitted
 
-(chef's average rating and review amount)
 
 **Contact**
 
-**User Story:*
+*User Story:*
 
 `As a user, I would like to be able to contact the site owner in case I have any issues or queries.`
 
-**Implementation:*
+*Implementation:
 
 A contact form has been included in the navigation menu, enabling users to submit requests for assistance or inquiries.
 
-(contact form)
+![Contact-Form](./readme/images/readme-contact.png)
 
 <hr>
 
@@ -407,9 +399,45 @@ A feature will be implemented that will allow users the ability to send priviate
 
 <details>
 
-</details>
+#### Wireframes
 
-<summary>All Wireframe Images</summary>
+**Home**
+
+![Home](./readme/wireframes/wireframe-home.png)
+
+**Sign In/Up**
+
+![Sign In/Up](./readme/wireframes/wireframe-auth.png)
+
+**Feed**
+
+![Feed](./readme/wireframes/wireframe-feed.png)
+
+**Likd**
+
+![Liked](./readme/wireframes/wireframe-liked.png)
+
+**Profiles**
+
+![Profiles](./readme/wireframes/wireframe-profiles.png)
+
+**Chef Page**
+
+![Chef Page](./readme/wireframes/wireframe-chef-page.png)
+
+**Chef Create**
+
+![Chef Create](./readme/wireframes/wireframe-create-chef.png)
+
+**Recipe Create**
+
+![Recipe Create](./readme/wireframes/wireframe-create-recipe.png)
+
+**Contact**
+
+![Contact](./readme/wireframes/wireframe-contact.png)
+
+</details>
 
 <hr>
 
@@ -463,6 +491,34 @@ The imagery featured on this website is a blend, comprising both user-uploaded c
 <hr>
 
 ## Testing
+
+<details>
+
+#### Recipes 
+
+![Recipes Testing](./readme/testing/testing-recipe.png)
+
+#### Comments 
+
+![Comments Testing](./readme/testing/testing-comments.png)
+
+#### Chefs 
+
+![Chef Testing](./readme/testing/testing-chef.png)
+
+#### Contact 
+
+![Contact Testing](./readme/testing/testing-contact.png)
+
+#### Profiles 
+
+![Profiles Testing](./readme/testing/testing-profiles.png)
+
+#### Authorization 
+
+![Authorization Testing](./readme/testing/testing-auth.png)
+
+</details>
 
 ## Deployment
 
@@ -531,3 +587,13 @@ To fork a GitHub Repository:
 3. This action will duplicate the entire project in your GitHub Repository.
 
 ## Credits
+
+- The Logo for the site was created using [LogoMakr](https://logomakr.com/)
+- Various images that are used throughout the site were sourced ethically from Stock Image websites such as [unSplash](https://unsplash.com/) and [Pexels](https://www.pexels.com/)
+- I referred to the [documentation](https://www.npmjs.com/package/react-simple-star-rating) for the Star Rating System to assist with installing and utilizing the external component.
+- Code to handle current user context in `src/contexts/CurrentUserContext.js` was adapted from Code Institute 'Moments' React walkthrough lessons
+- Code to create and use axios interceptors to refresh tokens in `src/contexts/CurrentUserContext.js` and `src/utils/utils.js`was adapted from the Code Institute 'Moments' React walkthrough lessons
+
+## Acknowledgements
+
+This fictional site was created during my Full-Stack Software Development course with Code Institute. This site is is Portfolio Project #5 (Advanced Front-End). I would like to express my gratitude to my mentor Gareth McGirr for his guidance and support throughout the creation of this project. His feedback has been invaluable.

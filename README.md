@@ -22,6 +22,8 @@ Each feature was categorized into epics and prioritized under labels such as "Mu
 
 The Kanban board was established using GitHub Projects, providing a visual representation of the project's progress. It can be accessed here for further details on individual project cards. All stories, excluding documentation tasks, were accompanied by comprehensive acceptance criteria to define the functionality required for their completion.
 
+Below is a Bar Chart depicting the process of delivering the phases of work: To Do, In Progress and Done.
+
 ![Users Stories Chart](./readme/images/user-stories-chart.png)
 
 <hr>
@@ -46,7 +48,7 @@ This Epic concentrates on the frontend development of the application concerning
 
 #### Chefs
 
-This Epic centers on the frontend development of the application concerning chefs. It aims to enable users to interact with the backend API to register/unregister themselves as chefs and display their chef information.
+This Epic centers on the frontend development of the application concerning chefs. It aims to enable users to interact with the backend API to register themselves as chefs and display their chef information.
 
 #### Reviews
 
@@ -102,7 +104,7 @@ This epic covers the front end creation of the application in regards to site co
 **Chefs** 
 
 - As an chef, I would like to be able to register my details so others can view my work and contact details
-- As a user, I would like to be able to rate an chef so that owthers can see my rating and review
+- As a user, I would like to be able to rate an chef so that others can see my rating and review
 
 **Contact**
 
@@ -384,7 +386,7 @@ The average rating of the chef is prominently displayed on their profile as a ca
 
 `As a user, I would like to be able to contact the site owner in case I have any issues or queries.`
 
-*Implementation:
+*Implementation:*
 
 A contact form has been included in the navigation menu, enabling users to submit requests for assistance or inquiries.
 
@@ -607,4 +609,4 @@ To fork a GitHub Repository:
 
 ## Acknowledgements
 
-This fictional site was created during my Full-Stack Software Development course with Code Institute. This site is is Portfolio Project #5 (Advanced Front-End). I would like to express my gratitude to my mentor Gareth McGirr for his guidance and support throughout the creation of this project. His feedback has been invaluable. I would also like to thank Code Institute's tutor support for their feedback and assistance.
+This fictional site was created during my Full-Stack Software Development course with Code Institute. This site is Portfolio Project #5 (Advanced Front-End). I would like to express my gratitude to my mentor Gareth McGirr for his guidance and support throughout the creation of this project. His feedback has been invaluable. I would also like to thank Code Institute's tutor support for their feedback and assistance.

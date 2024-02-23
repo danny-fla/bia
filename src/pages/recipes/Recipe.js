@@ -121,7 +121,7 @@ const Recipe = (props) => {
         )}
         {duration && (
           <Card.Text className="text-left">
-            <strong>Duration</strong> <div dangerouslySetInnerHTML={{ __html: duration }} />
+            <strong>Duration <small>(mins)</small></strong> <div dangerouslySetInnerHTML={{ __html: duration }} />
           </Card.Text>
         )}
         <div className={styles.RecipeBar}>

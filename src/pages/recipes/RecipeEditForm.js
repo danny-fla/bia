@@ -30,30 +30,31 @@ function RecipeEditForm() {
     image: "",
   });
   const { title, ingredients, instructions, category, duration, image } = recipeData;
-  const [ingredientsValue, setIngredientsValue] = useState(
-    RichTextEditor.createValueFromString(ingredients, "html")
-  );
-  const [instructionsValue, setInstructionsValue] = useState(
-    RichTextEditor.createValueFromString(instructions, "html")
-  );
+  const [ingredientsValue, setIngredientsValue] = useState(RichTextEditor.createEmptyValue());
+  const [instructionsValue, setInstructionsValue] = useState(RichTextEditor.createEmptyValue());
   
-
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
-    const handleMount = async () => {
+    const fetchRecipeData = async () => {
       try {
         const { data } = await axiosReq.get(`/recipe/${id}/`);
         const { title, ingredients, instructions, image, category, duration, is_owner } = data;
 
-        is_owner ? setRecipeData({ title, ingredients, instructions, image, category, duration }) : history.push("/");
+        if (is_owner) {
+          setRecipeData({ title, ingredients, instructions, image, category, duration });
+          setIngredientsValue(RichTextEditor.createValueFromString(ingredients, "html"));
+          setInstructionsValue(RichTextEditor.createValueFromString(instructions, "html"));
+        } else {
+          history.push("/");
+        }
       } catch (err) {
       }
     };
 
-    handleMount();
+    fetchRecipeData();
   }, [history, id]);
 
   const handleChange = (event) => {

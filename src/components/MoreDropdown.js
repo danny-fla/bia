@@ -2,7 +2,6 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/MoreDropdown.module.css";
 import { useHistory } from "react-router";
-import axios from "axios";
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -46,20 +45,6 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
 };
 
 export function ProfileEditDropdown({ id }) {
-  const handleDeleteProfile = async () => {
-    const confirmDelete = window.confirm("Are you sure you want to delete your profile?");
-    if (confirmDelete) {
-      try {
-        // Send a DELETE request to the backend endpoint for profile deletion
-        await axios.delete(`/profiles/${id}/`);
-        // Redirect to sign-up page after successful deletion
-        history.push("/signup");
-      } catch (error) {
-        console.error("Error occurred while deleting profile:", error);
-        // Handle error, such as showing a notification to the user
-      }
-    }
-  };
   const history = useHistory();
   return (
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">

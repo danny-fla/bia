@@ -42,7 +42,7 @@ function ReviewEditForm(props) {
         <Form.Control as="textarea" name="review" value={editedReview} onChange={handleChange} />
       </Form.Group>
       <Button 
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Green}`}
         type="submit">Save Changes
       </Button>
     </Form>

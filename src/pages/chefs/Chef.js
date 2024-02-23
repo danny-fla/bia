@@ -35,7 +35,7 @@ const Chef = (props) => {
   return (
     <Card className={styles.Recipe}>
       <Card.Body>
-       <h3>{owner}</h3>
+        <h3>{owner}</h3>
         {!isProfilePage && (
           <Media className="align-items-center justify-content-between">
             <Link to={`/profiles/${profile_id}`}>
@@ -59,13 +59,11 @@ const Chef = (props) => {
           <strong>{email}</strong>
         </p>
         <p className="text-center">
-          Phone: 
+          Phone:
           <strong>{phone}</strong>
         </p>
         <p className="text-center">
-          Rating:
-          {" "}
-          <Rating readonly initialValue={average_rating} size={25} />
+          Rating: <Rating readonly initialValue={average_rating} size={25} />
         </p>
         <p className="text-center">
           Reviews: {"    "}
@@ -73,7 +71,7 @@ const Chef = (props) => {
         </p>
         {!is_owner && (
           <Button
-            className={`${btnStyles.Button} ${btnStyles.Basil}`}
+            className={`${btnStyles.Button} ${btnStyles.Green}`}
             onClick={() => history.push(`/reviews/${id}/create`)}
             aria-label="create-review"
           >
@@ -82,7 +80,7 @@ const Chef = (props) => {
         )}
         {showAll && (
           <Button
-            className={`${btnStyles.Button} ${btnStyles.Basil}`}
+            className={`${btnStyles.Button} ${btnStyles.Green}`}
             onClick={() => history.push(`/reviews/${id}`)}
             aria-label="view-reviews"
           >

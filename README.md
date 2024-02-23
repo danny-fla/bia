@@ -2,7 +2,7 @@
 
 Bia is a social media platform for cooking enthusiasts and food lovers. Users are able to share their recipes, become registered Chefs while also being albe to follow other users and like/ comment on their uploads.
 
-Click here to view the site (inset link)
+Click here to view the site [Live Link](https://bia-code-institute-00aa55848eed.herokuapp.com/)
 
 ![Am-I-Responsive](./readme/images/responsive.png)
 
@@ -120,7 +120,7 @@ This epic covers the front end creation of the application in regards to site co
 
 `As a user, I would like a favicon on the website so that I can easily know which tab belongs to Bia`
 
-*Implementation:
+*Implementation:*
 
 A site favicon, featuring the site's logo, has been incorporated. This enhancement enables users to readily recognize Bia when navigating multiple open tabs.
 
@@ -544,7 +544,7 @@ The deployment process to Heroku involves the following steps:
 11. Finally, click "Deploy" to initiate the deployment process.
 
 
-(deployed link)
+[Deployed Link](https://bia-code-institute-00aa55848eed.herokuapp.com/)
 
 <hr>
 
@@ -577,6 +577,10 @@ Install Dependencies:
 
 Run Application:
 
+`nvm install 16`
+
+`nvm use 16`
+
 `npm start`
 
 <hr>
@@ -598,7 +602,9 @@ To fork a GitHub Repository:
 - I referred to the [documentation](https://www.npmjs.com/package/react-simple-star-rating) for the Star Rating System to assist with installing and utilizing the external component.
 - Code to handle current user context in `src/contexts/CurrentUserContext.js` was adapted from Code Institute 'Moments' React walkthrough lessons
 - Code to create and use axios interceptors to refresh tokens in `src/contexts/CurrentUserContext.js` and `src/utils/utils.js`was adapted from the Code Institute 'Moments' React walkthrough lessons
+- This [article](https://www.npmjs.com/package/react-rte?activeTab=readme) was followed in order to utilize Rich Text Editor.
+
 
 ## Acknowledgements
 
-This fictional site was created during my Full-Stack Software Development course with Code Institute. This site is is Portfolio Project #5 (Advanced Front-End). I would like to express my gratitude to my mentor Gareth McGirr for his guidance and support throughout the creation of this project. His feedback has been invaluable.
+This fictional site was created during my Full-Stack Software Development course with Code Institute. This site is is Portfolio Project #5 (Advanced Front-End). I would like to express my gratitude to my mentor Gareth McGirr for his guidance and support throughout the creation of this project. His feedback has been invaluable. I would also like to thank Code Institute's tutor support for their feedback and assistance.

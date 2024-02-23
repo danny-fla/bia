@@ -52,6 +52,10 @@ This Epic centers on the frontend development of the application concerning chef
 
 This Epic focuses on the frontend development of the application concerning chef reviews. Its goal is to enable users to interact with the backend API through the user interface to leave reviews on specific chef.
 
+#### Contact
+
+This epic covers the front end creation of the application in regards to site contact form. Its purpose is to interact with the backend API through the user interface for allowing users to send queries to the admin.
+
 <hr>
 
 ## User Stories
@@ -135,6 +139,7 @@ Additionally, URL redirects were implemented to restrict access to pages intende
 *User Story:*
 
 `As a user, I would like a fully responsive navigation menu so that I can easily access the site from any device`
+
 *Implementation:*
 
 A navigation menu was implemented than collapses into a hamburger menu on smaller devices. This will ensure that no navigation items overlap and users can access and navigate the site from any size device.
@@ -213,7 +218,7 @@ The recipes, feed, and liked pages are organized with the newest content display
 
 A recipe detail page has been added that is visible to all users, this will allow them to see the full recipe detail and comments.
 
-**User Stories:*
+*User Stories:*
 
 `As a logged in user I can like a recipe so that I can show my support for the recipes that interest me`
 
